@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Steps On Making Wudu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+        <style>
+            li{
+                padding:10px;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="main">
+        <div>
+            <nav class="navbar navbar-expand-sm bg-warning">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/wudu">Wudu Page</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/fajr">Salah Fajr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/zuhr">Salah Zuhr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/asr">Salah Asr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/magrihb">Salah Magrihb</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/isha">Salah Isha</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+            <h1>Steps to Making Wudu</h1>
+            <div id="steps" *ngFor="let step of stepsOfWudu">
+                <p>{{step.step}}</p>
+                <img [src]="step.image">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
