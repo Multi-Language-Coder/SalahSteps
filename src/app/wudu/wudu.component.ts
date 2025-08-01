@@ -9,44 +9,59 @@ export class WuduComponent {
   stepsOfWudu:stepInt[] = [
     {
       step:"Having the intention to make Wudu",
-      image:'assets/placeholder.png'
+      
     },
     {
       step:"Say Bismillah",
-      image:'../../assets/placeholder.png'
+      
     },
     {
       step:"Wash your hands throughly",
-      image:'../../assets/placeholder.png'
+      image:['assets/step1.png']
+      
     },
     {
       step:"Rinse your mouth 3 times",
-      image:'../../assets/placeholder.png'
+      image:['assets/step2.png']
+      
     },
     {
       step:"Rinse the nose 3 times",
-      image:'../../assets/placeholder.png'
+      image:['assets/step3.png','assets/step4.png']
+      
     },
     {
       step:"Wash the face 3 times",
-      image:'../../assets/placeholder.png'
+      image:['assets/step5.png']
     },
     {
-      step:"Wash the arms up toand including the elbows 3 times each",
-      image:'../../assets/placeholder.png'
+      step:"Wash the arms up to and including the elbows 3 times each",
+      image:['assets/step6.png',]
     },
     {
       step:"Wipe the head once",
-      image:'../../assets/placeholder.png'
+      image:['assets/step7part1.png']
+    },
+    {
+      step:"Wipe the ears",
+      image:['assets/step7part2.png','assets/step7part3.png']
     },
     {
       step:"Wash both feet up to and including the ankles 3 times each",
-      image:'../../assets/placeholder.png'
+      image:['assets/step8.png']
     }
   ]
-step: any;
+  breakWudu:Array<string> = [
+    "Urinating",
+    "Defecating",
+    "Passing Gas",
+    "Deep Sleep whilst lying down",
+    "Flowing blood or pus",
+    "Vommiting a mouthful"
+  ]
 }
 interface stepInt{
   step:string,
-  image:string
+  image?:string[],
+  images?:string
 }

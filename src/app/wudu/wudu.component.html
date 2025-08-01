@@ -11,6 +11,11 @@
             li{
                 padding:10px;
             }
+            #breaker{
+                 border: none; /* Removes all default borders */
+                border-top: 20px solid #333; /* Sets a solid top border */
+            }
+
         </style>
 </head>
 
@@ -29,10 +34,16 @@
             </nav>
         </div>
         <div class="container">
-            <h1>Steps to Making Wudu</h1>
+            <h1 class="display-1">Steps to Making Wudu</h1>
+            <hr id="breaker">
+            <br>
             <div id="steps" *ngFor="let step of stepsOfWudu">
-                <p>{{step.step}}</p>
-                <img [src]="step.image">
+                <h2>{{step.step}}</h2>
+                <div class="images">
+                    <img *ngFor="let image of step.image" [src]="image"/>
+                    <hr>
+                    <br>
+                </div>
             </div>
         </div>
     </div>

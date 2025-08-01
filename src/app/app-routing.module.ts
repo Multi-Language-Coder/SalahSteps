@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WuduComponent } from './wudu/wudu.component';
 
 const routes: Routes = [
-  {path:"wudu", component:WuduComponent}
+  {path:"wudu", component:WuduComponent},
 ];
 
 @NgModule({
