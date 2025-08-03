@@ -51,17 +51,40 @@ export class WuduComponent {
       image:['assets/step8.png']
     }
   ]
-  breakWudu:Array<string> = [
-    "Urinating",
-    "Defecating",
-    "Passing Gas",
-    "Deep Sleep whilst lying down",
-    "Flowing blood or pus",
-    "Vommiting a mouthful"
+  breakWudu:breakage[] = [
+    {
+      action:"Urinating",
+      depth:"Taking a piss"
+    },
+    {
+      action:"Defecating",
+      depth:"Going Number 2"
+    },
+    {
+      action:"Passing Gas",
+      depth:"Farting out, even the littlest"
+    },
+    {
+      action:"Deep Sleep whilst lying down",
+      depth:"If in a deep sleep, and also laying down breaks Wudu"
+    },
+    {
+      action:"Flowing blood or pus",
+      depth:"If you're are bleeding or excreting pus"
+    },
+    {
+      action:"Vommiting a mouthful",
+      depth:"Vommiting out a whole bunch"
+    }
+    
   ]
 }
 interface stepInt{
   step:string,
   image?:string[],
   images?:string
+}
+interface breakage{
+  action:string,
+  depth:string
 }

@@ -15,7 +15,13 @@
                  border: none; /* Removes all default borders */
                 border-top: 20px solid #333; /* Sets a solid top border */
             }
-
+            #wuduBreaker{
+                 border: none; /* Removes all default borders */
+                border-top: 20px solid #333; /* Sets a solid top border */
+            }
+            .reasons{
+                font-size:24px;
+            }
         </style>
 </head>
 
@@ -37,12 +43,21 @@
             <h1 class="display-1">Steps to Making Wudu</h1>
             <hr id="breaker">
             <br>
-            <div id="steps" *ngFor="let step of stepsOfWudu">
-                <h2>{{step.step}}</h2>
+            <div class="steps" *ngFor="let step of stepsOfWudu">
+                <h3>{{step.step}}</h3>
                 <div class="images">
                     <img *ngFor="let image of step.image" [src]="image"/>
                     <hr>
                     <br>
+                </div>
+            </div>
+            <hr id="wuduBreaker">
+            <div>
+                <h1>Ways how Wudu can be broken</h1>
+                <div id="breakage" *ngFor="let reason of breakWudu">
+                    <ul>
+                        <li class="reasons">{{reason}}</li>
+                    </ul>
                 </div>
             </div>
         </div>
