@@ -1,15 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-li{
-                padding:10px;
-            }
-            #breaker{
-                 border: none; /* Removes all default borders */
-                border-top: 20px solid #333; /* Sets a solid top border */
-            }
-            #wuduBreaker{
-                 border: none; /* Removes all default borders */
-                border-top: 20px solid #333; /* Sets a solid top border */
-            }
-            .reasons{
-                font-size:24px;
-            }
+li {
+    padding: 10px;
+}
+
+#breaker {
+    border: none;
+    /* Removes all default borders */
+    border-top: 20px solid #333;
+    /* Sets a solid top border */
+}
+
+#wuduBreaker {
+    border: none;
+    /* Removes all default borders */
+    border-top: 20px solid #333;
+    /* Sets a solid top border */
+}
+
+.reasons {
+    font-size: 24px;
+}

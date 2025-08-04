@@ -22,7 +22,7 @@
         </button> 
             <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
             <div id="set1">
-            <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Zuhr ({{set.prayer}})</h2>
+            <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Fajr ({{set.prayer}})</h2>
             <div id="collapseContent{{set.set}}" class="collapse">
                 <div *ngFor="let step of stepsOfSalah" class="step text-center">
                    <div *ngIf="step.step <= set.units">
@@ -33,10 +33,13 @@
                              <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
                         </p>
                     </div>
-
-                        <audio *ngIf="step.audioFile!=undefined" controls>
-                            <source src="{{step.audioFile}}" type="audio/mpeg">
+                    <div *ngIf="step.audioFile!=undefined">
+                        <audio *ngFor="let audio of step.audioFile" controls>
+                           <source [src]="audio" type="audio/mpeg">
                         </audio>
+                        <br>
+                    </div>
+                        
                    </div>
                 </div>
             </div>
