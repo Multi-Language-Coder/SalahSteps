@@ -16,7 +16,7 @@ const stepsOfSalah: SalahStep[] = [
         {
             step:4,
             action:"Recite the Ta'awwudh and the Tasmiyah",
-            recitation:["a'udhu billahi min-ash-shaytanir-rajim","bismillahir-rahmanir-raheem"]
+            recitation:["A'udhu billahi min-ash-shaytanir-rajim","B13ismillahir-rahmanir-raheem"]
         },
         {
             step:5,
@@ -96,7 +96,9 @@ export const enviroment = {
         UnitTwo:14,
         UnitThree:16,
         UnitFour:17
-    }
+    },
+    baseApiUrl:"https://api.aladhan.com/v1/",
+    apiKey:'677875d2dcd56002469145oand89e51'
 }
 export interface SalahStep {
     step: number;

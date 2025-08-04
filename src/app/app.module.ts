@@ -12,6 +12,7 @@ import { IshaComponent } from './isha/isha.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     IshaComponent,
     HomeComponent,
     ErrorComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]
