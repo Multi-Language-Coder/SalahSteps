@@ -8,7 +8,21 @@ import {enviroment} from '../../enviroment/enviroment';
 })
 export class FajrComponent {
   stepsOfSalah = enviroment.salahSteps;
+setsAmount = [
+    {
+      set:1,
+      prayer:"4 Sunnah Mu'akkadah",
+      units:enviroment.stepsUpUntil.UnitFour,
+      c:"#collapseContent1"
+    },
+    {
+      set:2,
+      prayer:"4 Fard",
+      units:enviroment.stepsUpUntil.UnitFour,
+      c:"#collapseContent2"
+    },
 
+  ]
   constructor() {
    }
 }

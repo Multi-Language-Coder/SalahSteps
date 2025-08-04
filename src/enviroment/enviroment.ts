@@ -10,7 +10,8 @@ const stepsOfSalah: SalahStep[] = [
         {
             step:3,
             action:'Recite the Thana in a voice only you can hear',
-            recitation:["Subhanaka Allahumma wa bi hamdika wa tabarakasmuka wa ta’ala jadduka wa la ilaha ghaiyruk"]
+            recitation:["Subhanaka Allahumma wa bi hamdika wa tabarakasmuka wa ta’ala jadduka wa la ilaha ghaiyruk"],
+            audioFile:["assets/audio/Thana.mp3"]
         },
         {
             step:4,
@@ -20,7 +21,8 @@ const stepsOfSalah: SalahStep[] = [
         {
             step:5,
             action:"Recite Surah Al-Fatiha",
-            recitation:["Alhamdu lillahi rabbil alamin","Ar-rahmanir-rahim","Maliki yawmid-din","Iyaka na'budu wa iyaka nasta'in","Ihdinas-siratal-mustaqim","Siratal ladhina an'amta alayhim","Ghayril Maghdubi alayhim walad-dAllin"]
+            recitation:["Alhamdu lillahi rabbil alamin","Ar-rahmanir-rahim","Maliki yawmid-din","Iyaka na'budu wa iyaka nasta'in","Ihdinas-siratal-mustaqim","Siratal ladhina an'amta alayhim","Ghayril Maghdubi alayhim walad-dAllin"],
+            audioFile:["assets/audio/SurahFatihah.mp3"]
         },
         {
             step:6,
@@ -89,10 +91,16 @@ const stepsOfSalah: SalahStep[] = [
         }
 ]
 export const enviroment = {
-    salahSteps:stepsOfSalah
+    salahSteps:stepsOfSalah,
+    stepsUpUntil:{
+        UnitTwo:14,
+        UnitThree:16,
+        UnitFour:17
+    }
 }
 export interface SalahStep {
     step: number;
     action: string;
     recitation?: string[];
+    audioFile?:string[];
 }

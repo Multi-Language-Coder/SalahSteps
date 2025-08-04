@@ -5,12 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WuduComponent } from './wudu/wudu.component';
 import { FajrComponent } from './fajr/fajr.component';
+import { ZuhrComponent } from './zuhr/zuhr.component';
+import { AsrComponent } from './asr/asr.component';
+import { MaghribComponent } from './maghrib/maghrib.component';
+import { IshaComponent } from './isha/isha.component';
+import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WuduComponent,
-    FajrComponent
+    FajrComponent,
+    ZuhrComponent,
+    AsrComponent,
+    MaghribComponent,
+    IshaComponent,
+    HomeComponent,
+    ErrorComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

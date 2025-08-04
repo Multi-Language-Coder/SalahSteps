@@ -7,9 +7,9 @@
     </head>
     <body>
         <app-navbar></app-navbar>
-        <h1 class="text-center display-1" style="font-weight:bold;">Fajr Prayer</h1>
+        <h1 class="text-center display-1" style="font-weight:bold;">Asr Prayer</h1>
         <hr id="breaker">
-        <h4 class="text-center">Fajr is a prayer that has 2 sets, and within those 2 sets, are 2 Units of Sunnah Mu'akkadah, and 2 units of Fard</h4>
+        <h4 class="text-center">Asr is a prayer that has 2 sets, and within those 2 sets, are 2 Units of Sunnah Mu'akkadah, and 2 units of Fard</h4>
         <div *ngFor="let set of setsAmount">
             <button 
             class="btn btn-warning" 
@@ -22,7 +22,7 @@
         </button> 
             <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
             <div id="set1">
-            <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Zuhr ({{set.prayer}})</h2>
+            <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Asr ({{set.prayer}})</h2>
             <div id="collapseContent{{set.set}}" class="collapse">
                 <div *ngFor="let step of stepsOfSalah" class="step text-center">
                    <div *ngIf="step.step <= set.units">
@@ -33,10 +33,6 @@
                              <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
                         </p>
                     </div>
-
-                        <audio *ngIf="step.audioFile!=undefined" controls>
-                            <source src="{{step.audioFile}}" type="audio/mpeg">
-                        </audio>
                    </div>
                 </div>
             </div>

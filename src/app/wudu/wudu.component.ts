@@ -23,38 +23,38 @@ export class WuduComponent {
     },
     {
       step:"Wash your hands throughly",
-      image:['assets/step1.png']
+      image:['assets/images/step1.png']
       
     },
     {
       step:"Rinse your mouth 3 times",
-      image:['assets/step2.png']
+      image:['assets/images/step2.png']
       
     },
     {
       step:"Rinse the nose 3 times",
-      image:['assets/step3.png','assets/step4.png']
+      image:['assets/images/step3.png','assets/step4.png']
       
     },
     {
       step:"Wash the face 3 times",
-      image:['assets/step5.png']
+      image:['assets/images/step5.png']
     },
     {
       step:"Wash the arms up to and including the elbows 3 times each",
-      image:['assets/step6.png',]
+      image:['assets/images/step6.png',]
     },
     {
       step:"Wipe the head once",
-      image:['assets/step7part1.png']
+      image:['assets/images/step7part1.png']
     },
     {
       step:"Wipe the ears",
-      image:['assets/step7part2.png','assets/step7part3.png']
+      image:['assets/images/step7part2.png','assets/images/step7part3.png']
     },
     {
       step:"Wash both feet up to and including the ankles 3 times each",
-      image:['assets/step8.png']
+      image:['assets/images/step8.png']
     }
   ]
   breakWudu:breakage[] = [
