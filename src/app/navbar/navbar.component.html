@@ -2,7 +2,16 @@
             integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 <div>
             <nav class="navbar navbar-expand-sm bg-warning">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" *ngIf="location.href.includes('multi-language-coder.github.io')">
+                    <li class="nav-item"><a class="nav-link" href="SalahSteps/wudu">Wudu Page</a></li>
+                    <li class="nav-item"><a class="nav-link" href="SalahSteps/salah/fajr">Salah Fajr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="SalahSteps/salah/zuhr">Salah Zuhr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="SalahSteps/salah/asr">Salah Asr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="SalahSteps/salah/maghrib">Salah Magrihb</a></li>
+                    <li class="nav-item"><a class="nav-link" href="SalahSteps/salah/isha">Salah Isha</a></li>
+                    <li class="nav-item"><a class="nav-link" href="SalahSteps/home">Home</a></li>
+                </ul>
+                <ul class="navbar-nav" *ngIf="location.href.includes('localhost')">
                     <li class="nav-item"><a class="nav-link" href="/wudu">Wudu Page</a></li>
                     <li class="nav-item"><a class="nav-link" href="/salah/fajr">Salah Fajr</a></li>
                     <li class="nav-item"><a class="nav-link" href="/salah/zuhr">Salah Zuhr</a></li>
