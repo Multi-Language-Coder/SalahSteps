@@ -7,22 +7,6 @@
     <title>The Steps On Making Wudu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-        <style>
-            li{
-                padding:10px;
-            }
-            #breaker{
-                 border: none; /* Removes all default borders */
-                border-top: 20px solid #333; /* Sets a solid top border */
-            }
-            #wuduBreaker{
-                 border: none; /* Removes all default borders */
-                border-top: 20px solid #333; /* Sets a solid top border */
-            }
-            .reasons{
-                font-size:24px;
-            }
-        </style>
 </head>
 
 <body>
@@ -56,7 +40,9 @@
                 <h1>Ways how Wudu can be broken</h1>
                 <div id="breakage" *ngFor="let reason of breakWudu">
                     <ul>
-                        <li class="reasons">{{reason}}</li>
+                        <li class="reasons">
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" [attr.data-bs-title]="reason.depth">{{reason.action}}</a>
+                        </li>
                     </ul>
                 </div>
             </div>

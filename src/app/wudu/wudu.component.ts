@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var bootstrap: any;
 @Component({
   selector: 'app-wudu',
   standalone: false,
@@ -6,6 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './wudu.component.css'
 })
 export class WuduComponent {
+  ngAfterViewInit() {
+    // Initialize tooltips after the view is rendered
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+  }
   stepsOfWudu:stepInt[] = [
     {
       step:"Having the intention to make Wudu",
@@ -58,7 +64,7 @@ export class WuduComponent {
     },
     {
       action:"Defecating",
-      depth:"Going Number 2"
+      depth:"Going to poop"
     },
     {
       action:"Passing Gas",
