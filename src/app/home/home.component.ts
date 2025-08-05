@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { enviroment } from '../../enviroment/enviroment';
+import { timeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent {
   ngOnInit(){
     const date = new Date();
     const todayDate = (`${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()+1}-${date.getDate()<10?"0"+date.getDate():date.getDate()}-${date.getFullYear()}`)
+    const timeRightNow = (`${date.getHours()<10?"0"+date.getHours():date.getHours()}:${date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes()}:${date.getSeconds()<10?"0"+date.getSeconds():date.getSeconds()}`);
     navigator.geolocation.getCurrentPosition(position => {
       this.http.get<placeDetails>(`https://geocode.maps.co/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&api_key=${enviroment.apiKey}`).subscribe((value)=>{
         this.location = value.display_name;
@@ -37,7 +39,9 @@ export class HomeComponent {
   currTime:string = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
   private getNewTime(): void{
     setInterval(()=>{
-      this.currTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+      const time = new Date();
+      this.currTime = time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+      
     },1000)
   }
 }

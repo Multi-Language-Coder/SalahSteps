@@ -13,11 +13,11 @@
     <div class="main">
 <app-navbar></app-navbar>
         <div class="container">
-            <h1 class="display-1">Steps to Making Wudu</h1>
+            <h1 class="display-1" style="color:rgb(175, 175, 175)">Steps to Making Wudu</h1>
             <hr id="breaker">
             <br>
             <div class="steps" *ngFor="let step of stepsOfWudu">
-                <h3>{{step.step}}</h3>
+                <h3 style="color:rgb(175, 175, 175)">{{step.step}}</h3>
                 <div class="images">
                     <img *ngFor="let image of step.image" [src]="image"/>
                     <hr>
@@ -26,7 +26,7 @@
             </div>
             <hr id="wuduBreaker">
             <div>
-                <h1>Ways how Wudu can be broken</h1>
+                <h1 style="color:rgb(175, 175, 175)">Ways how Wudu can be broken</h1>
                 <div id="breakage" *ngFor="let reason of breakWudu">
                     <ul>
                         <li class="reasons">
