@@ -6,7 +6,7 @@ li {
 #breaker {
     border: none;
     /* Removes all default borders */
-    border-top: 20px solid #333;
+    border-top: 20px solid #b1b1b1;
     /* Sets a solid top border */
 }
 
@@ -19,4 +19,18 @@ li {
 
 .reasons {
     font-size: 24px;
+}
+body{
+    /* Set the background image and a semi-transparent overlay */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/Kaaba.jpg');
+    
+    /* Make the image cover the entire background */
+    background-size: cover;
+    
+    /* Center the image and prevent it from repeating */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Keep the image fixed when scrolling */
+    background-attachment: fixed;
 }

@@ -76,8 +76,9 @@ const stepsOfSalah: SalahStep[] = [
     },
     {
         step: 14,
-        action: "1A: If it is the last unit of the Set. One will recite Salah Ibrahimi and recite any dua after it. And can then one will turn their head to right and say 'As-salamu 'alaykum wa rahmatullah' and repeat to the left",
-        recitation: ["Allahuma salli 'ala Muhammadiw-wa 'ala 'ali Muhammadin kama sallayta 'ala Ibrahima wa 'ala ali Ibrahima innaka hamidum-majid. Allahuma barik 'ala Ibrahima wa 'ala ali Ibrahima innaka hamidum-majid"]
+        action: "1A: If it is the last unit of the Set. One will recite Salah Ibrahimi and recite any dua after it. And can then one will turn their head to right and say what is after Salah Ibrahimi and repeat to the left",
+        recitation: ["Allahuma salli 'ala Muhammadiw-wa 'ala 'ali Muhammadin kama sallayta 'ala Ibrahima wa 'ala ali Ibrahima innaka hamidum-majid. Allahuma barik 'ala Ibrahima wa 'ala ali Ibrahima innaka hamidum-majid","As-salamu 'alaykum wa rahmatullah"],
+        audioFile: ["assets/audio/SalahIbrahimi.mp3","assets/audio/greeting.mp3"]
     },
     {
         step: 14.5,

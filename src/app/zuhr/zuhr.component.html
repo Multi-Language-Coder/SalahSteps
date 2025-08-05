@@ -3,25 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fajr Prayer</title>
+        <title>Zuhr Prayer</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     </head>
     <body>
         <app-navbar></app-navbar>
-        <h1 class="text-center display-1" style="font-weight:bold;">Zuhr Prayer</h1>
+        <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Zuhr Prayer</h1>
         <hr id="breaker">
-        <h4 class="text-center">Zuhr is a prayer that has 4 sets, and within those 4 sets, are 4 Units of Sunnah Mu'akkadah, 4 units of Fard, 2 units of Sunnah Mu'akkadah, and 2 units of Nafl</h4>
+        <h4 class="text-center" style="color:rgb(175, 175, 175)">Zuhr is a prayer that has 2 sets, and within those 2 sets, are 2 Units of Sunnah Mu'akkadah, and 2 units of Fard</h4>
+        
         <div *ngFor="let set of setsAmount">
-            <button 
-            class="btn btn-warning" 
+            <div class="text-center">
+                <button 
+            class="btn btn-success" 
             type="button" 
             data-bs-toggle="collapse" 
             [attr.data-bs-target]="set.c"
             aria-expanded="false" 
             aria-controls="collapseContent">
-        Collapse Set {{set.set}}
+        Open / Collapse Set {{set.set}}
         </button> 
+            </div>"
             <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
             <div id="set1">
             <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Zuhr ({{set.prayer}})</h2>
@@ -34,7 +37,14 @@
                         <p *ngFor="let recitation of step.recitation">
                              <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
                         </p>
+                        <div *ngIf="step.audioFile!=undefined">
+                        <audio *ngFor="let audio of step.audioFile" controls>
+                           <source [src]="audio" type="audio/mpeg">
+                        </audio>
                     </div>
+                    </div>
+                    
+                        
                    </div>
                 </div>
             </div>

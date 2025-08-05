@@ -8,6 +8,7 @@ import {enviroment} from '../../enviroment/enviroment';
 })
 export class FajrComponent {
   stepsOfSalah = enviroment.salahSteps;
+  open = false;
 setsAmount = [
     {
       set:1,
