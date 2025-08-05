@@ -22,7 +22,7 @@ li {
 }
 body{
     /* Set the background image and a semi-transparent overlay */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/Kaaba.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/Kaaba.png');
     
     /* Make the image cover the entire background */
     background-size: cover;

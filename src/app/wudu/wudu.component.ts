@@ -33,7 +33,7 @@ export class WuduComponent {
     },
     {
       step:"Rinse the nose 3 times",
-      image:['assets/images/step3.png','assets/step4.png']
+      image:['assets/images/step3.png','assets/images/step4.png']
       
     },
     {
