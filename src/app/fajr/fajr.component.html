@@ -1,54 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fajr Prayer</title>
-    </head>
-    <body>
-        <app-navbar></app-navbar>
-        <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Fajr Prayer</h1>
-        <hr id="breaker">
-        <h4 class="text-center" style="color:rgb(175, 175, 175)">Fajr is a prayer that has 2 sets, and within those 2 sets, are 2 Units of Sunnah Mu'akkadah, and 2 units of Fard</h4>
-        
-        <div *ngFor="let set of setsAmount">
-            <div class="text-center">
-                <button 
-            class="btn btn-success" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            [attr.data-bs-target]="set.c"
-            aria-expanded="false" 
-            aria-controls="collapseContent">
-        Open / Collapse Set {{set.set}}
-        </button> 
-            </div>"
-            <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fajr Prayer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .audio-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .audio-icon {
+            cursor: pointer;
+            font-size: 2em;
+            color: #000;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+    <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Fajr Prayer</h1>
+    <hr id="breaker">
+    <h4 class="text-center" style="color:rgb(175, 175, 175)">Fajr is a prayer that has 2 sets, and within those 2 sets,
+        are 2 Units of Sunnah Mu'akkadah, and 2 units of Fard</h4>
+
+    <div *ngFor="let set of setsAmount;">
+        <div class="text-center">
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="set.c"
+                aria-expanded="false" aria-controls="collapseContent">
+                Open / Collapse Set {{set.set}}
+            </button>
+        </div>
+        <div
+            style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
             <div id="set1">
-            <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Fajr ({{set.prayer}})</h2>
-            <div id="collapseContent{{set.set}}" class="collapse">
-                <div *ngFor="let step of stepsOfSalah" class="step text-center">
-                   <div *ngIf="step.step <= set.units">
-                     <h3 class="text-center">Step Number #{{step.step}}</h3>
-                    <p class="text-center">{{step.action}}</p>
-                    <div style="border:2px solid black;" *ngIf="step.recitation" id="recitations">
-                        <p *ngFor="let recitation of step.recitation">
-                             <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
-                        </p>
-                        <div *ngIf="step.audioFile!=undefined">
-                        <audio *ngFor="let audio of step.audioFile" controls>
-                           <source [src]="audio" type="audio/mpeg">
-                        </audio>
+                <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Fajr ({{set.prayer}})
+                </h2>
+                <div id="collapseContent{{set.set}}" class="collapse">
+                    <div *ngFor="let step of stepsOfSalah;" class="step text-center">
+                        <div *ngIf="step.step <= set.units">
+                            <h3 class="text-center">Step Number #{{step.step}}</h3>
+                            <p class="text-center">{{step.action}}</p>
+                            <div style="border:2px solid black;" *ngIf="step.recitation" id="recitations">
+                                <p *ngFor="let recitation of step.recitation">
+                                    <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
+                                </p>
+                                <div *ngIf="step.audioFile!=undefined" class="audio-container">
+                                    <ng-container *ngFor="let audio of step.audioFile;">
+                                        <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
+                                            <div class="play-button"></div>
+                                        </button>
+                                        <audio #audioPlayer>
+                                            <source [src]="audio" type="audio/mpeg">
+                                        </audio>
+                                    </ng-container>
+
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
-                    </div>
-                    
-                        
-                   </div>
                 </div>
             </div>
+
         </div>
-        
-        </div>
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>

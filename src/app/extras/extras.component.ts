@@ -11,4 +11,11 @@ export class ExtrasComponent {
   invalidation = enviroment.invalidation;
   womenProcedure = enviroment.womenProcedure;
   janazah = enviroment.SalahAlJanazah;
+  togglePlayPause(audioPlayer: HTMLAudioElement): void {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  }
 }

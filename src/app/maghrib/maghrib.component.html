@@ -6,6 +6,24 @@
         <title>Maghrib Prayer</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+            <style>
+        .audio-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .audio-icon {
+            cursor: pointer;
+            font-size: 2em;
+            color: #000;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
     </head>
     <body>
         <app-navbar></app-navbar>
@@ -37,10 +55,17 @@
                         <p *ngFor="let recitation of step.recitation">
                              <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
                         </p>
-                        <div *ngIf="step.audioFile!=undefined">
-                        <audio *ngFor="let audio of step.audioFile" controls>
-                           <source [src]="audio" type="audio/mpeg">
-                        </audio>
+                         <div *ngIf="step.audioFile!=undefined" class="audio-container">
+                                    <ng-container *ngFor="let audio of step.audioFile;">
+                                        <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
+                                            <div class="play-button"></div>
+                                        </button>
+                                        <audio #audioPlayer>
+                                            <source [src]="audio" type="audio/mpeg">
+                                        </audio>
+                                    </ng-container>
+
+                                </div>
                     </div>
                     </div>
                     
@@ -50,7 +75,6 @@
             </div>
         </div>
         
-        </div>
         </div>
     </body>
 </html>

@@ -24,6 +24,14 @@ setsAmount = [
     },
 
   ]
+  document=document;
+  togglePlayPause(audioPlayer: HTMLAudioElement): void {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  }
   constructor() {
    }
 }

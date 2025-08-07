@@ -105,9 +105,52 @@ li, p#SajdahAlSahw,p#missedPrayers,p#womenProcedure,p.janazahParagraph{
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
 }
+.audio-icon-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:20px;
+            width: 70px;
+            height: 70px;
+            background-color: #16A34A; /* A green color similar to Tailwind's green-600 */
+            border: 8px solid #F59E0B; /* A gold color similar to Tailwind's amber-400 */
+            border-radius: 50%; /* Makes the container a circle */
+            
+            /*
+              Multiple box shadows create the "shiny" and "pop out" effect.
+              - The first shadow is a soft outer glow in a lighter gold color.
+              - The second shadow is a darker, more defined shadow for depth.
+            */
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.75), 0 4px 6px rgba(0, 0, 0, 0.2);
+            
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
 
+        /*
+          Hover effect for the button
+        */
+        .audio-icon-btn:hover {
+            transform: scale(1.1);
+            /* Enhance the glow on hover */
+            box-shadow: 0 0 25px rgba(245, 158, 11, 1), 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /*
+          This creates the triangle shape for the play button using CSS borders.
+          The white color provides good contrast against the green background.
+        */
+        .play-button {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid white;
+            transform: translateX(2px); /* Adjust position for a perfect center */
+        }
 #recitations p {
     margin: 0;
+    
     color: #333;
 }
 html, body {

@@ -35,4 +35,11 @@ export class ZuhrComponent {
       c:"#collapseContent4"
     },
   ]
+  togglePlayPause(audioPlayer: HTMLAudioElement): void {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  }
 }

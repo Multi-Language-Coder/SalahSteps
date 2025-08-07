@@ -29,4 +29,11 @@ export class MaghribComponent {
         c:"#collapseContent3"
       },
     ]
+    togglePlayPause(audioPlayer: HTMLAudioElement): void {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  }
 }

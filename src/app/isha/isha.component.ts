@@ -48,4 +48,11 @@ export class IshaComponent {
           c:"#collapseContent6"
         },
       ]
+      togglePlayPause(audioPlayer: HTMLAudioElement): void {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  }
 }

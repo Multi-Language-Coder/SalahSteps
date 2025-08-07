@@ -24,4 +24,11 @@ export class AsrComponent {
       },
   
     ]
+    togglePlayPause(audioPlayer: HTMLAudioElement): void {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  }
 }
