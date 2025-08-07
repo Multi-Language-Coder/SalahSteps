@@ -8,6 +8,7 @@ import { MaghribComponent } from './maghrib/maghrib.component';
 import { IshaComponent } from './isha/isha.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
+import { ExtrasComponent } from './extras/extras.component';
 
 const routes: Routes = [
   {path:"wudu", component:WuduComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:"salah/isha", component:IshaComponent},
   {path:"", redirectTo:"/home",pathMatch:"full"},
   {path:"home",component:HomeComponent},
+  {path:"extras", component:ExtrasComponent},
   {path:"**", component:ErrorComponent, pathMatch:"full"}
 ];
 

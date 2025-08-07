@@ -12,14 +12,14 @@ export class FajrComponent {
 setsAmount = [
     {
       set:1,
-      prayer:"4 Sunnah Mu'akkadah",
-      units:enviroment.stepsUpUntil.UnitFour,
+      prayer:"2 Sunnah Mu'akkadah",
+      units:enviroment.stepsUpUntil.UnitTwo,
       c:"#collapseContent1"
     },
     {
       set:2,
-      prayer:"4 Fard",
-      units:enviroment.stepsUpUntil.UnitFour,
+      prayer:"2 Fard",
+      units:enviroment.stepsUpUntil.UnitTwo,
       c:"#collapseContent2"
     },
 

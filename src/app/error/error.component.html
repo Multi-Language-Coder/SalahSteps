@@ -3,11 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>404 - Page Not Found</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Using Inter font for a clean look */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for the container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f7f3e9; /* Soft, calming background color */
+        }
+        /* Custom styles for the message box */
+        .message-box {
+            background-color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 1rem; /* Rounded corners */
+            padding: 3rem;
+            max-width: 90%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <app-navbar></app-navbar>
-    <h1 class="text-center">Error 404 Not Found</h1>
-
+    <!-- Main container to center content vertically and horizontally -->
+    <div class="container">
+        <!-- Message box with styling for a pleasant look -->
+        <div class="message-box">
+            <!-- Large, bold 404 text -->
+            <h1 class="text-6xl md:text-8xl font-extrabold text-[#1a535c] mb-4">404</h1>
+            <!-- Main heading -->
+            <h2 class="text-2xl md:text-4xl font-semibold text-[#4e4e50] mb-2">Page Not Found</h2>
+            <!-- Informative paragraph with a calming tone -->
+            <p class="text-lg md:text-xl text-[#7a7a7c] mb-6">
+                We're sorry, but the page you are looking for seems to have been lost.
+                Please check the URL or return to the homepage to continue your journey.
+            </p>
+            <!-- A responsive button to return to the homepage -->
+            <a href="/" class="inline-block bg-[#1a535c] text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#15464d] focus:outline-none focus:ring-2 focus:ring-[#1a535c] focus:ring-opacity-50">
+                Go to Homepage
+            </a>
+        </div>
+    </div>
 </body>
 </html>

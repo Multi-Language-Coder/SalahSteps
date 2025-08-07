@@ -9,6 +9,7 @@ import { enviroment } from '../../enviroment/enviroment';
 })
 export class IshaComponent {
   stepsOfSalah = enviroment.salahSteps;
+  witr = enviroment.Salah_Witr;
     setsAmount = [
         {
           set:1,

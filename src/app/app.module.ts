@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {HttpClientModule } from '@angular/common/http';
+import { ExtrasComponent } from './extras/extras.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {HttpClientModule } from '@angular/common/http';
     HomeComponent,
     ErrorComponent,
     NavbarComponent,
+    ExtrasComponent,
   ],
   imports: [
     BrowserModule,

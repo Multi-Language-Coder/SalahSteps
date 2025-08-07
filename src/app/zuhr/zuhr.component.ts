@@ -12,13 +12,13 @@ export class ZuhrComponent {
   setsAmount = [
     {
       set:1,
-      prayer:"2 Sunnah Mu'akkadah",
+      prayer:"4 Sunnah Mu'akkadah",
       units:enviroment.stepsUpUntil.UnitFour,
       c:"#collapseContent1"
     },
     {
       set:2,
-      prayer:"2 Fard",
+      prayer:"4 Fard",
       units:enviroment.stepsUpUntil.UnitFour,
       c:"#collapseContent2"
     },

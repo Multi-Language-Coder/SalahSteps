@@ -11,7 +11,7 @@
         <app-navbar></app-navbar>
         <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Zuhr Prayer</h1>
         <hr id="breaker">
-        <h4 class="text-center" style="color:rgb(175, 175, 175)">Zuhr is a prayer that has 2 sets, and within those 2 sets, are 2 Units of Sunnah Mu'akkadah, and 2 units of Fard</h4>
+        <h4 class="text-center" style="color:rgb(175, 175, 175)">Zuhr is a prayer that has 4 sets, and within those 4 sets, are 4 Units of Sunnah Mu'akkadah, 4 units of Fard, 2 units of Nafl</h4>
         
         <div *ngFor="let set of setsAmount">
             <div class="text-center">
@@ -24,11 +24,12 @@
             aria-controls="collapseContent">
         Open / Collapse Set {{set.set}}
         </button> 
-            </div>"
+            </div>
             <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
             <div id="set1">
             <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Zuhr ({{set.prayer}})</h2>
-            <div id="collapseContent{{set.set}}" class="collapse">
+            <ng-container *ngIf="set.c!='#collapseContent25'">
+                <div id="{{set.c.replace('#','')}}" class="collapse">
                 <div *ngFor="let step of stepsOfSalah" class="step text-center">
                    <div *ngIf="step.step <= set.units">
                      <h3 class="text-center">Step Number #{{step.step}}</h3>
@@ -48,6 +49,8 @@
                    </div>
                 </div>
             </div>
+            </ng-container>
+
         </div>
         
         </div>

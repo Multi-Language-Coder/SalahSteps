@@ -11,7 +11,7 @@
         <app-navbar></app-navbar>
         <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Maghrib Prayer</h1>
         <hr id="breaker">
-        <h4 class="text-center" style="color:rgb(175, 175, 175)">Maghrib is a prayer that has 2 sets, and within those 2 sets, are 2 Units of Sunnah Mu'akkadah, and 2 units of Fard</h4>
+        <h4 class="text-center" style="color:rgb(175, 175, 175)">Maghrib is a prayer that has 3 sets, and within those 3 sets, are 3 Units of Fard, 2 Units of Sunnah Mu'akkadah, and 2 Units of Nafl</h4>
         
         <div *ngFor="let set of setsAmount">
             <div class="text-center">
@@ -24,7 +24,7 @@
             aria-controls="collapseContent">
         Open / Collapse Set {{set.set}}
         </button> 
-            </div>"
+            </div>
             <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
             <div id="set1">
             <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Maghrib ({{set.prayer}})</h2>
