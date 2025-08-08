@@ -16,7 +16,7 @@ export class PrayerTimesService {
   ) {}
 
   getPrayerTimes(location: string = 'Randallstown'): Observable<PrayerTimeResponse> {
-    const url = `https://muslimpro-scrapper.lleans.dev/${location}?calcMethod=Islamic_University_Karachi&asjurMethod=HANAFI`;
+    const url = `/api/${location}?calcMethod=Islamic_University_Karachi&asjurMethod=HANAFI`;
     
     return this.http.get<PrayerTimeResponse>(url).pipe(
       timeout(10000),
@@ -33,4 +33,5 @@ export class PrayerTimesService {
     );
   }
 }
+
 
