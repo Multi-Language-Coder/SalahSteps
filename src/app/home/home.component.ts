@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
   location: string = 'Loading...';
   currTime: string = '';
+  currTimeHrMin: string = ''
   isLoading$: typeof this.loadingService.loading$;
   hasError = false;
 
@@ -77,6 +78,25 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
+
+isTimeBetween(startTime: string, endTime: string | undefined, targetTime: string): boolean {
+  if (!endTime) {
+    // For the last prayer (Isha), check if current time is after Isha
+    const start = new Date(`2024-01-01T${startTime}`);
+    const target = new Date(`2024-01-01T${targetTime}`);
+    return target >= start;
+  }
+
+  const start = new Date(`2024-01-01T${startTime}`);
+  const end = new Date(`2024-01-01T${endTime}`);
+  const target = new Date(`2024-01-01T${targetTime}`);
+
+  if (end < start) {
+    return target >= start || target <= end;
+  }
+
+  return target >= start && target <= end;
+}
   private onLocationError(error: GeolocationPositionError): void {
     this.loadingService.hide();
     let message = 'Location access denied. ';
@@ -161,6 +181,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       hour: '2-digit', 
       minute: '2-digit', 
       second: '2-digit' 
+    });
+    this.currTimeHrMin = new Date().toLocaleTimeString([], { 
+      hour: '2-digit', 
+      minute: '2-digit'
     });
   }
 
