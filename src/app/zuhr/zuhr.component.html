@@ -59,7 +59,12 @@
                          <div *ngIf="step.audioFile!=undefined" class="audio-container">
                                     <ng-container *ngFor="let audio of step.audioFile;">
                                         <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
-                                            <div class="play-button"></div>
+                                            <ng-container *ngIf="audioPlayer.paused==true">
+                                                <div class="play-button"></div>
+                                            </ng-container>
+                                            <ng-container *ngIf="audioPlayer.paused==false">
+                                                <div class="pause-button"></div>
+                                            </ng-container>
                                         </button>
                                         <audio #audioPlayer>
                                             <source [src]="audio" type="audio/mpeg">

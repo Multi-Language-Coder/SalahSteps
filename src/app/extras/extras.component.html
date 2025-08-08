@@ -201,7 +201,12 @@
             <p class="text-center">{{janazah.Thana}}</p>
             <div class="audio-container">
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer3)">
-              <div class="play-button"></div>
+              <ng-container *ngIf="audioPlayer3.paused==true">
+                <div class="play-button"></div>
+              </ng-container>
+              <ng-container *ngIf="audioPlayer3.paused==false">
+                <div class="pause-button"></div>
+              </ng-container>
             </button>
             <audio #audioPlayer3>
               <source src="assets/audio/Thana_in_Janazah.mp3" type="audio/mpeg">
@@ -210,8 +215,7 @@
             
 
           </div>
-        </div>
-        <p class="text-center janazahParagraph">
+          <p class="text-center janazahParagraph">
           After reciting the thana', the Imam will say takbir again, but no one should raise their hands. After this
           second takbir, everyone will quietly recite Salah Ibrahimi as it is recited in salah. Now, the Imam will say
           the takbir for the third time, after which everyone will recite the du'a that's made for the deceased person
@@ -222,7 +226,12 @@
           <p class="text-center">{{janazah.AdultVer}}</p>
           <div class="audio-container">
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
-              <div class="play-button"></div>
+              <ng-container *ngIf="audioPlayer.paused==true">
+                <div class="play-button"></div>
+              </ng-container>
+              <ng-container *ngIf="audioPlayer.paused==false">
+                <div class="pause-button"></div>
+              </ng-container>
             </button>
             <audio #audioPlayer>
               <source src="assets/audio/SupplicationAdult.mp3" type="audio/mpeg">
@@ -236,7 +245,12 @@
           <p class="text-center">{{janazah.BoyChild}}</p>
           <div class="audio-container">
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer1)">
-              <div class="play-button"></div>
+              <ng-container *ngIf="audioPlayer1.paused==true">
+                <div class="play-button"></div>
+              </ng-container>
+              <ng-container *ngIf="audioPlayer1.paused==false">
+                <div class="pause-button"></div>
+              </ng-container>
             </button>
             <audio #audioPlayer1>
               <source src="assets/audio/SupplicationMaleChild.mp3" type="audio/mpeg">
@@ -250,7 +264,12 @@
           <p class="text-center">{{janazah.GirlChild}}</p>
           <div class="audio-container">
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer2)">
-              <div class="play-button"></div>
+              <ng-container *ngIf="audioPlayer2.paused==true">
+                <div class="play-button"></div>
+              </ng-container>
+              <ng-container *ngIf="audioPlayer2.paused==false">
+                <div class="pause-button"></div>
+              </ng-container>
             </button>
             <audio #audioPlayer2>
               <source src="assets/audio/SupplicationFemaleChild.mp3" type="audio/mpeg">
@@ -262,6 +281,8 @@
           hands to their sides. After this takbir, the Imam will conclude the prayer just as salah is concluded with the
           salam.
         </p>
+        </div>
+        
       </div>
     </div>
   </div>
