@@ -1,0 +1,363 @@
+body {
+    /* A deep, rich green background often found in Islamic art */
+    background-color: #0d422a !important;
+    /* A subtle geometric pattern for texture */
+    background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+    /* Using a clean, readable font for body text */
+    font-family: 'Poppins', sans-serif;
+    /* A warm, off-white for text to contrast with the dark background */
+    color: #f5eeda;
+    /* Ensure the body always takes up at least the full viewport height */
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1, h4 {
+    /* Using Amiri, a classic Arabic-style serif font for headings */
+    font-family: 'Amiri', serif;
+    /* A gold color for accents and prominence */
+    color: #d4af37;
+    /* A subtle shadow to make the text stand out */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h2#heading-label {
+    font-family: 'Amiri', serif;
+    /* A gold color for accents and prominence */
+    color: #d4af37;
+    /* A subtle shadow to make the text stand out */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+h2, h3, p {
+    color: #333; /* Dark text for light background boxes */
+}
+
+h2 {
+    font-family: 'Amiri', serif;
+    font-size: 3rem;
+}
+
+h3 {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+}
+
+li, p#SajdahAlSahw, p#missedPrayers, p#womenProcedure, p.janazahParagraph {
+    padding: 10px;
+    /* Changed color to a gold accent */
+    color: #d3a81d;
+    /* Added a text shadow for better visibility on dark backgrounds */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#breaker {
+    border: none;
+    /* Removes all default borders */
+    border-top: 20px solid #d4af37;
+    /* Sets a solid gold top border */
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.reasons {
+    font-size: 24px;
+}
+
+.btn-success {
+    /* A rich green button with a gold border */
+    background-color: #0a7541;
+    border-color: #d4af37;
+    color: #f5eeda;
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-success:hover {
+    background-color: #0d422a;
+    border-color: #f5eeda;
+}
+
+.card-box {
+    background-color: #f5eeda; /* Off-white for the content box */
+    margin: 20px auto;
+    padding: 20px;
+    border: 3px solid #d4af37;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    max-width: 800px;
+}
+
+#recitations {
+    border: 2px solid #d4af37 !important; /* Gold border for recitations */
+    padding: 15px;
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+}
+
+.audio-icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:20px;
+    width: 70px;
+    height: 70px;
+    background-color: #16A34A; /* A green color similar to Tailwind's green-600 */
+    border: 8px solid #F59E0B; /* A gold color similar to Tailwind's amber-400 */
+    border-radius: 50%; /* Makes the container a circle */
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.75), 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.audio-icon-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(245, 158, 11, 1), 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.play-button {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid white;
+    transform: translateX(2px);
+}
+
+#recitations p {
+    margin: 0;
+    color: #333;
+}
+
+html, body {
+    height: 100%;
+}
+
+.card-body {
+    border: 2px solid #d4af37;
+    border-radius:5px;
+    background-color: #f5eeda;
+    color: #333;
+}
+
+.pause-button {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.pause-button::before, .pause-button::after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    width: 8px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.pause-button::before {
+    left: 8px;
+}
+
+.pause-button::after {
+    right: 8px;
+}
+
+.calendar-container {
+    font-family: Arial, sans-serif;
+    width: 300px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-header h2 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th, .calendar-table td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #eee;
+}
+
+/* Style for the days */
+.calendar-table td.current-month {
+    background-color: #f0f0f0;
+}
+
+/* Custom CSS for the compass needle and container */
+/* Add a highlighted arc for valid Qibla range */
+.qibla-range {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent var(--start-angle, 315deg),
+        rgba(212, 175, 55, 0.3) var(--start-angle, 315deg),
+        rgba(212, 175, 55, 0.3) var(--end-angle, 45deg),
+        transparent var(--end-angle, 45deg),
+        transparent 360deg
+    );
+    pointer-events: none;
+}
+
+/* Enhanced compass container with better styling */
+.compass-container {
+    width: min(80vw, 300px);
+    height: min(80vw, 300px);
+    border: 6px solid #d4af37;
+    border-radius: 50%;
+    position: relative;
+    background-color: rgba(245, 238, 218, 0.9);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Qibla direction indicator */
+.qibla-indicator {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 20px solid #d4af37;
+    z-index: 10;
+}
+
+/* Enhanced needle styling */
+.compass-needle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 8px;
+    height: 100%;
+    transform-origin: 50% 50%;
+    transition: transform 0.2s ease-out;
+    z-index: 5;
+}
+
+.needle-top {
+    width: 100%;
+    height: 50%;
+    background-color: #b91c1c;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.needle-bottom {
+    width: 100%;
+    height: 50%;
+    background-color: #d4af37;
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+/* Enhanced cardinal points */
+.cardinal-point {
+    position: absolute;
+    font-family: 'Amiri', serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0d422a;
+    text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.7);
+    z-index: 10;
+}
+
+.north { 
+    top: 12px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    color: #b91c1c; 
+    font-size: 1.4rem;
+}
+.south { bottom: 12px; left: 50%; transform: translateX(-50%); }
+.east { right: 12px; top: 50%; transform: translateY(-50%); }
+.west { left: 12px; top: 50%; transform: translateY(-50%); }
+
+.compass-enable-btn {
+    background: linear-gradient(135deg, #0a7541, #16a34a);
+    border: 3px solid #d4af37;
+    color: #f5eeda;
+    font-family: 'Amiri', serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 1.2rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.compass-enable-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.compass-enable-btn:hover {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    border-color: #f5eeda;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6), 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.compass-enable-btn:hover::before {
+    left: 100%;
+}
+
+.compass-enable-btn:active {
+    transform: translateY(-1px) scale(1.02);
+}

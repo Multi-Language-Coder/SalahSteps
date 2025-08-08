@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qibla Direction Finder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles for the app */
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+    button {
+      background-color: #4f46e5;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #4338ca;
+    }
+    #qibla-display {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-top: 1.5rem;
+      color: #374151;
+    }
+    #error-message {
+      color: #ef4444;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Qibla Direction Finder</h1>
+    <p class="text-gray-600 mb-6">
+      Press the button below to find the direction to the Kaaba from your current location.
+      This app uses the browser's geolocation to calculate the bearing in degrees from True North.
+    </p>
+    <button onclick="getQiblaDirection()">Find Direction</button>
+    <p id="qibla-display"></p>
+    <p id="error-message"></p>
+  </div>
+
+  <script>
+    // qibla.js - Core logic for finding the Qibla direction
+
+    /**
+     * Entry point for the application.
+     * Uses the browser's Geolocation API to get the user's location.
+     */
+    function getQiblaDirection() {
+      // Check if the browser supports the Geolocation API
+      if (navigator.geolocation) {
+        // Request the current position. The showPosition function is the success callback.
+        // The showError function is the error callback.
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        // Display an error if the browser doesn't support geolocation
+        document.getElementById("error-message").innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    /**
+     * Success callback for the geolocation request.
+     * @param {GeolocationPosition} position - The object containing the user's latitude and longitude.
+     */
+    function showPosition(position) {
+      // Get the user's latitude and longitude from the position object
+      const userLat = position.coords.latitude;
+      const userLon = position.coords.longitude;
+
+      // Define the fixed coordinates of the Kaaba in Mecca, Saudi Arabia
+      const kaabaLat = 21.4225;
+      const kaabaLon = 39.8262;
+
+      // Convert degrees to radians for mathematical calculations
+      const lat1 = toRadians(userLat);
+      const lon1 = toRadians(userLon);
+      const lat2 = toRadians(kaabaLat);
+      const lon2 = toRadians(kaabaLon);
+      
+      // Calculate the difference in longitudes
+      const deltaLon = lon2 - lon1;
+
+      // Use the great-circle bearing formula to calculate the direction
+      // This formula finds the bearing from point 1 (user) to point 2 (Kaaba) on a sphere
+      const y = Math.sin(deltaLon) * Math.cos(lat2);
+      const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(deltaLon);
+      let bearing = Math.atan2(y, x);
+      
+      // Convert the bearing from radians back to degrees
+      bearing = toDegrees(bearing);
+
+      // Normalize the bearing to a value between 0 and 360 degrees
+      const qiblaDirection = (bearing + 360) % 360;
+
+      // Display the final calculated direction to the user
+      document.getElementById("qibla-display").innerHTML = `The Qibla direction is approximately ${qiblaDirection.toFixed(2)} degrees from True North.`;
+      document.getElementById("error-message").innerHTML = ""; // Clear any previous errors
+    }
+
+    
+    /**
+     * Error callback for the geolocation request.
+     * @param {GeolocationPositionError} error - The error object.
+     */
+    function showError(error) {
+      let errorMessage = "";
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          errorMessage = "User denied the request for Geolocation. Please enable it in your browser settings.";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          errorMessage = "Location information is unavailable.";
+          break;
+        case error.TIMEOUT:
+          errorMessage = "The request to get user location timed out.";
+          break;
+        case error.UNKNOWN_ERROR:
+          errorMessage = "An unknown error occurred.";
+          break;
+      }
+      document.getElementById("error-message").innerHTML = errorMessage;
+      document.getElementById("qibla-display").innerHTML = ""; // Clear any previous results
+    }
+
+    /**
+     * Helper function to convert degrees to radians.
+     * @param {number} degrees - The value in degrees.
+     * @returns {number} The value in radians.
+     */
+    function toRadians(degrees) {
+      return degrees * Math.PI / 180;
+    }
+
+    /**
+     * Helper function to convert radians to degrees.
+     * @param {number} radians - The value in radians.
+     * @returns {number} The value in degrees.
+     */
+    function toDegrees(radians) {
+      return radians * 180 / Math.PI;
+    }
+  </script>
+
+</body>
+</html>

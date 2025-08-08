@@ -53,116 +53,44 @@
         .west { left: 10px; top: 50%; transform: translateY(-50%); }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4 font-sans text-gray-800">
+<body class="bg-gray-100 min-h-screen p-4 font-sans text-gray-800">
     <app-navbar></app-navbar>
     <div id="message-box" class="fixed top-0 left-0 right-0 p-4 bg-yellow-200 text-yellow-800 text-center transition-all duration-300 transform -translate-y-full z-50">
         <!-- Message for the user will be displayed here -->
     </div>
 
-    <h1 class="text-3xl font-bold mb-8 text-center">Digital Compass</h1>
+    <div class="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Qibla Compass</h1>
 
-    <div class="compass-container bg-white shadow-xl rounded-full flex items-center justify-center">
-        <span class="cardinal-point north text-red-500">N</span>
-        <span class="cardinal-point south">S</span>
-        <span class="cardinal-point east">E</span>
-        <span class="cardinal-point west">W</span>
-        <div id="compass-needle" class="compass-needle">
-            <div class="needle-top"></div>
-            <div class="needle-bottom"></div>
+        <div class="compass-container bg-white shadow-xl rounded-full flex items-center justify-center mb-8">
+            <div class="qibla-range" id="qibla-range"></div>
+            <div class="qibla-indicator" id="qibla-indicator"></div>
+            <span class="cardinal-point north">N</span>
+            <span class="cardinal-point south">S</span>
+            <span class="cardinal-point east">E</span>
+            <span class="cardinal-point west">W</span>
+            <div id="compass-needle" class="compass-needle">
+                <div class="needle-top"></div>
+                <div class="needle-bottom"></div>
+            </div>
+        </div>
+
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2" id="heading-label">Current Heading:</h2>
+            <p id="heading-display" class="text-5xl font-extrabold text-blue-600">{{currentHeading}}°</p>
+        </div>
+
+        <div class="text-center mb-8">
+            <button 
+                *ngIf="isOrientationSupported" 
+                (click)="requestCompassPermission()" 
+                class="compass-enable-btn">
+                🧭 Enable Compass
+            </button>
+            <p *ngIf="!isOrientationSupported" class="text-red-600 font-semibold bg-red-50 p-4 rounded-lg border border-red-200">
+                ❌ Device orientation not supported on this browser/device.
+            </p>
         </div>
     </div>
-
-    <div class="mt-8 text-center">
-        <p class="text-2xl font-semibold">Heading:</p>
-        <p id="heading-display" class="text-5xl font-extrabold text-blue-600 mt-2">--</p>
-    </div>
-
-    <script>
-        const headingDisplay = document.getElementById('heading-display');
-        const compassNeedle = document.getElementById('compass-needle');
-        const messageBox = document.getElementById('message-box');
-
-        // Function to display a temporary message
-        function showMessage(msg, duration = 3000) {
-            messageBox.textContent = msg;
-            messageBox.classList.remove('-translate-y-full');
-            setTimeout(() => {
-                messageBox.classList.add('-translate-y-full');
-            }, duration);
-        }
-
-        // Check if the Device Orientation API is supported
-        if (window.DeviceOrientationEvent) {
-            // This event provides heading data relative to true north
-            window.addEventListener('deviceorientationabsolute', handleOrientation);
-
-            // If deviceorientationabsolute is not supported, fall back to deviceorientation
-            if (window.DeviceOrientationEvent && !('ondeviceorientationabsolute' in window)) {
-                window.addEventListener('deviceorientation', handleOrientation);
-            }
-
-            // Request permission for motion sensors on iOS 13+ devices
-            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                const requestButton = document.createElement('button');
-                requestButton.textContent = 'Enable Compass';
-                requestButton.className = 'mt-4 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-200';
-                
-                requestButton.onclick = async () => {
-                    try {
-                        const permissionState = await DeviceOrientationEvent.requestPermission();
-                        if (permissionState === 'granted') {
-                            showMessage('Permission granted. Compass is active!');
-                            // Add event listener after permission is granted
-                            window.addEventListener('deviceorientationabsolute', handleOrientation);
-                            // Fallback for older iOS
-                            if (window.DeviceOrientationEvent && !('ondeviceorientationabsolute' in window)) {
-                                window.addEventListener('deviceorientation', handleOrientation);
-                            }
-                            requestButton.remove(); // Remove the button after permission is granted
-                        } else {
-                            showMessage('Permission denied. Compass cannot be used.');
-                        }
-                    } catch (error) {
-                        showMessage('Permission request failed. Check device settings.');
-                        console.error('Permission request error:', error);
-                    }
-                };
-
-                // Add the permission button to the body
-                document.body.appendChild(requestButton);
-                showMessage('Please grant permission to use the compass.');
-            } else {
-                showMessage('Compass is starting...');
-            }
-
-        } else {
-            showMessage('Device Orientation API not supported on this browser.');
-        }
-
-        /**
-         * Event handler for the device orientation event.
-         * @param {DeviceOrientationEvent} event The orientation event object.
-         */
-        function handleOrientation(event) {
-            // The `alpha` value is the compass heading in degrees,
-            // where 0 is North, 90 is East, 180 is South, and 270 is West.
-            // Some devices return null for alpha if the sensor isn't available.
-            let alpha = event.alpha;
-
-            if (typeof alpha === 'number' && !isNaN(alpha)) {
-                // The alpha value is in the range [0, 360), relative to true north.
-                // We rotate the needle by 360 - alpha so that the red needle always points North (0 degrees).
-                // We round the value for a cleaner display.
-                const heading = Math.round(alpha);
-                const rotation = 360 - heading;
-
-                compassNeedle.style.transform = `rotate(${rotation}deg)`;
-                headingDisplay.textContent = `${heading}°`;
-            } else {
-                headingDisplay.textContent = '--';
-                showMessage('Could not get heading data.');
-            }
-        }
-    </script>
 </body>
 </html>
