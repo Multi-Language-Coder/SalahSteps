@@ -9,6 +9,7 @@ import { IshaComponent } from './isha/isha.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { ExtrasComponent } from './extras/extras.component';
+import { QiblaComponent } from './qibla/qibla.component';
 
 const routes: Routes = [
   {path:"wudu", component:WuduComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:"", redirectTo:"/home",pathMatch:"full"},
   {path:"home",component:HomeComponent},
   {path:"extras", component:ExtrasComponent},
-  {path:"**", component:ErrorComponent, pathMatch:"full"}
+  {path:"qibla", component:QiblaComponent},
+  {path:"**", component:ErrorComponent, pathMatch:"full"},
 ];
 
 @NgModule({

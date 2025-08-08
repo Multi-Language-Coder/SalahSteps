@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "https://muslimpro-scrapper.lleans.dev",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

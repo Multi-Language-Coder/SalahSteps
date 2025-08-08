@@ -14,6 +14,8 @@ import { ErrorComponent } from './error/error.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {HttpClientModule } from '@angular/common/http';
 import { ExtrasComponent } from './extras/extras.component';
+import { QiblaComponent } from './qibla/qibla.component';
+import { LoadingService } from './loading.service';
 
 @NgModule({
   declarations: [
@@ -24,17 +26,20 @@ import { ExtrasComponent } from './extras/extras.component';
     AsrComponent,
     MaghribComponent,
     IshaComponent,
-    HomeComponent,
     ErrorComponent,
     NavbarComponent,
     ExtrasComponent,
+    QiblaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
-    ],
-  providers: [],
+  ],
+  providers: [
+    LoadingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

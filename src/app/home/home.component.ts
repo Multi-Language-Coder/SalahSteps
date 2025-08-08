@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { enviroment } from '../../enviroment/enviroment';
-import { timeInterval } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil, finalize } from 'rxjs/operators';
+import { PrayerTimesService } from '../services/prayer-times.service';
+import { LoadingService } from '.././loading.service';
 
 @Component({
   selector: 'app-home',
@@ -9,157 +10,216 @@ import { timeInterval } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  constructor(private http: HttpClient){
+export class HomeComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+  
+  prayers: subPrayerData[] = [
+    { name: "Fajr", time: "Loading..." },
+    { name: "Sunrise", time: "Loading..." },
+    { name: "Dhuhr", time: "Loading..." },
+    { name: "Asr", time: "Loading..." },
+    { name: "Maghrib", time: "Loading..." },
+    { name: "Isha", time: "Loading..." }
+  ];
+  location: string = 'Loading...';
+  currTime: string = '';
+  isLoading$: typeof this.loadingService.loading$;
+  hasError = false;
 
+  constructor(
+    private prayerTimesService: PrayerTimesService,
+    private loadingService: LoadingService
+  ) {
+    this.isLoading$ = this.loadingService.loading$;
   }
-  prayers:subPrayerData[] = []
-  location:string = "Loading...";
-  ngOnInit(){
-    const date = new Date();
-    const todayDate = (`${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()+1}-${date.getDate()<10?"0"+date.getDate():date.getDate()}-${date.getFullYear()}`)
-    const timeRightNow = (`${date.getHours()<10?"0"+date.getHours():date.getHours()}:${date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes()}:${date.getSeconds()<10?"0"+date.getSeconds():date.getSeconds()}`);
-    navigator.geolocation.getCurrentPosition(position => {
-      this.http.get<placeDetails>(`https://geocode.maps.co/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&api_key=${enviroment.apiKey}`).subscribe((value)=>{
-        this.location = value.display_name;
-        this.http.get<PrayerTimesData>(`https://api.aladhan.com/v1/timingsByAddress/${todayDate}?address=${value.display_name}&method=8`).subscribe((value)=>{
-          this.prayers = [
-            {name:"Fajr", time:value.data.timings.Fajr},
-            {name:"Sunrise", time:value.data.timings.Sunrise},
-            {name:"Dhuhr", time:value.data.timings.Dhuhr},
-            {name:"Asr", time:value.data.timings.Asr},
-            {name:"Maghrib", time:value.data.timings.Maghrib},
-            {name:"Isha", time:value.data.timings.Isha}
-          ];
-        })
-    })
-    })
-    this.getNewTime();
+
+  ngOnInit(): void {
+    this.getCurrentLocation();
+    this.startTimeUpdater();
   }
-  currTime:string = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
-  private getNewTime(): void{
-    setInterval(()=>{
-      const time = new Date();
-      this.currTime = time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
-      
-    },1000)
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private getCurrentLocation(): void {
+    if (!navigator.geolocation) {
+      this.handleLocationError('Geolocation is not supported by this browser.');
+      return;
+    }
+
+    this.loadingService.show();
+    
+    navigator.geolocation.getCurrentPosition(
+      (position) => this.onLocationSuccess(position),
+      (error) => this.onLocationError(error),
+      { timeout: 10000, enableHighAccuracy: true }
+    );
+  }
+
+  private onLocationSuccess(position: GeolocationPosition): void {
+    const { latitude, longitude } = position.coords;
+    console.log('Latitude: ' + latitude + '\nLongitude: ' + longitude);
+    this.prayerTimesService.getLocationDetails(latitude, longitude)
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loadingService.hide())
+      )
+      .subscribe({
+        next: (locationData) => {
+          if (locationData) {
+            this.location = locationData.display_name;
+            this.loadPrayerTimes();
+          }
+        },
+        error: () => this.handleLocationError('Unable to get location details.')
+      });
+  }
+
+  private onLocationError(error: GeolocationPositionError): void {
+    this.loadingService.hide();
+    let message = 'Location access denied. ';
+    
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        message += 'Please enable location access and refresh the page.';
+        break;
+      case error.POSITION_UNAVAILABLE:
+        message += 'Location information is unavailable.';
+        break;
+      case error.TIMEOUT:
+        message += 'Location request timed out.';
+        break;
+    }
+    
+    this.handleLocationError(message);
+  }
+
+    private loadPrayerTimes(): void {
+    this.loadingService.show();
+    
+    this.prayerTimesService.getPrayerTimes()
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loadingService.hide())
+      )
+      .subscribe({
+        next: (response) => {
+          console.log('Prayer times response:', response); // Debug log
+          if (response?.data?.praytimes) {
+            this.processPrayerTimes(response);
+            this.hasError = false;
+          } else {
+            console.log('No prayer times data in response'); // Debug log
+            this.hasError = true;
+          }
+        },
+        error: (error) => {
+          console.error('Prayer times error:', error); // Debug log
+          this.hasError = true;
+        }
+      });
+  }
+  private processPrayerTimes(response: PrayerTimeResponse): void {
+    const todayISO = new Date().toISOString().split('T')[0];
+    const today = new Date().toLocaleDateString('en-GB', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short'
+    }).replace(/,/g, '');
+    console.log(today)
+    const timings = response.data.praytimes[today];
+    console.log(timings)
+    if (timings) {
+      this.prayers = [
+        { name: "Fajr", time: timings.Fajr },
+        { name: "Sunrise", time: timings.Sunrise },
+        { name: "Dhuhr", time: timings.Dhuhr },
+        { name: "Asr", time: timings.Asr },
+        { name: "Maghrib", time: timings.Maghrib },
+        { name: "Isha", time: timings["Isha'a"] }
+      ];
+    }
+  }
+
+  private handleLocationError(message: string): void {
+    console.error(message);
+    this.hasError = true;
+    // Load default location prayer times
+    this.location = 'Randallstown, MD (Default)';
+    this.loadPrayerTimes();
+  }
+
+  private startTimeUpdater(): void {
+    this.updateCurrentTime();
+    setInterval(() => this.updateCurrentTime(), 1000);
+  }
+
+  private updateCurrentTime(): void {
+    this.currTime = new Date().toLocaleTimeString([], { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit' 
+    });
+  }
+
+  retryLoadPrayerTimes(): void {
+    this.hasError = false;
+    this.getCurrentLocation();
   }
 }
 interface subPrayerData {
   name: string;
   time: string;
 }
-interface PrayerTimesData {
-  code: number;
-  status: string;
-  data: {
-    timings: {
-      Fajr: string;
-      Sunrise: string;
-      Dhuhr: string;
-      Asr: string;
-      Sunset: string;
-      Maghrib: string;
-      Isha: string;
-      Imsak: string;
-      Midnight: string;
-      Firstthird: string;
-      Lastthird: string;
-    };
-    date: {
-      readable: string;
-      timestamp: string;
-      hijri: {
-        date: string;
-        format: string;
-        day: string;
-        weekday: {
-          en: string;
-          ar: string;
-        };
-        month: {
-          number: number;
-          en: string;
-          ar: string;
-          days: number;
-        };
-        year: string;
-        designation: {
-          abbreviated: string;
-          expanded: string;
-        };
-        holidays: any[]; // Adjust type if specific holiday structure is known
-        adjustedHolidays: any[]; // Adjust type if specific holiday structure is known
-        method: string;
-      };
-      gregorian: {
-        date: string;
-        format: string;
-        day: string;
-        weekday: {
-          en: string;
-        };
-        month: {
-          number: number;
-          en: string;
-        };
-        year: string;
-        designation: {
-          abbreviated: string;
-          expanded: string;
-        };
-        lunarSighting: boolean;
-      };
-    };
-    meta: {
-      latitude: number;
-      longitude: number;
-      timezone: string;
-      method: {
-        id: number;
-        name: string;
-        params: {
-          Fajr: number;
-          Isha: string;
-        };
-        location: {
-          latitude: number;
-          longitude: number;
-        };
-      };
-      latitudeAdjustmentMethod: string;
-      midnightMode: string;
-      school: string;
-      offset: {
-        Imsak: number;
-        Fajr: number;
-        Sunrise: number;
-        Dhuhr: number;
-        Asr: number;
-        Maghrib: number;
-        Sunset: number;
-        Isha: number;
-        Midnight: number;
-      };
-    };
-  };
+// Interface for the prayer times on a specific day
+export interface PrayTimes {
+  Fajr: string;
+  Sunrise: string;
+  Dhuhr: string;
+  Asr: string;
+  Maghrib: string;
+  "Isha'a": string; // The JSON uses 'Isha'a', which can be represented this way
 }
 
-interface placeDetails{
-  place_id:number;
-  licence:string;
-  osm_type:string;
-  osm_id:number;
-  lat:string;
-  lon:string;
-  display_name:string;
-  address:addressDetails;
-  boundingbox:number[]
+// Interface for the 'praytimes' object, where keys are dynamic date strings
+export interface DailyPrayers {
+  [date: string]: PrayTimes;
 }
-interface addressDetails{
-  city:string;
-  county:string;
-  state:string;
-  country:string;
-  country_code:string
+
+// Interface for the main 'data' object
+export interface PrayerData {
+  location: string;
+  calculationMethod: string;
+  asrjuristicMethod: string;
+  praytimes: DailyPrayers;
+  ramadhan: null;
+}
+
+// Top-level interface for the entire JSON response
+export interface PrayerTimeResponse {
+  status: number;
+  message: string;
+  data: PrayerData;
+}
+
+
+interface placeDetails {
+  place_id: number;
+  licence: string;
+  osm_type: string;
+  osm_id: number;
+  lat: string;
+  lon: string;
+  display_name: string;
+  address: addressDetails;
+  boundingbox: number[]
+}
+interface addressDetails {
+  city: string;
+  county: string;
+  state: string;
+  country: string;
+  country_code: string
 }

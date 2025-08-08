@@ -195,3 +195,41 @@ html, body {
 .pause-button::after {
   right: 8px;
 }
+.calendar-container {
+  font-family: Arial, sans-serif;
+  width: 300px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header h2 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar-table th,
+.calendar-table td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #eee;
+}
+
+/* Style for the days */
+.calendar-table td.current-month {
+  background-color: #f0f0f0;
+}
