@@ -6,6 +6,10 @@
     "logLevel": "debug",
     "pathRewrite": {
       "^/api": ""
+    },
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
     }
   }
 }
