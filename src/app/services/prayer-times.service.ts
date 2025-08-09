@@ -24,8 +24,8 @@ export class PrayerTimesService {
     );
   }
 
-    getLocationDetails(lat: number, lon: number): Observable<any> {
-    const url = `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}&api_key=${enviroment.apiKey}`;
+  getLocationDetails(lat: number, lon: number): Observable<any> {
+    const url = `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}`;
     
     return this.http.get(url).pipe(
       timeout(5000),
@@ -33,5 +33,7 @@ export class PrayerTimesService {
     );
   }
 }
+
+
 
 

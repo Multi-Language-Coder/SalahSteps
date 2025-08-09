@@ -24,6 +24,9 @@ export class ErrorHandlerService {
     if (error.status === 404) {
       return 'Prayer times not found for your location.';
     }
+    if (error.status === 530 || error.status === 1033) {
+      return 'Prayer time service is temporarily unavailable. Please try again later.';
+    }
     if (error.status >= 500) {
       return 'Prayer time service is temporarily unavailable. Please try again later.';
     }

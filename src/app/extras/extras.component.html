@@ -11,89 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@300&display=swap"
     rel="stylesheet">
-  <style>
-    body {
-      /* A deep, rich green background often found in Islamic art */
-      background-color: #0d422a;
-      /* A subtle geometric pattern for texture */
-
-      /* Using a clean, readable font for body text */
-      font-family: 'Poppins', sans-serif;
-      /* A warm, off-white for text to contrast with the dark background */
-      color: #f5eeda;
-    }
-
-    h1,
-    h3 {
-      /* Using Amiri, a classic Arabic-style serif font for headings */
-      font-family: 'Amiri', serif;
-      /* A gold color for accents and prominence */
-      color: #d4af37;
-      /* A subtle shadow to make the text stand out */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 4.5rem;
-      /* Bootstrap's .display-1 size */
-      margin-bottom: 1.5rem;
-    }
-
-    h3 {
-      font-size: 3rem;
-      /* Bootstrap's .display-3 size */
-      margin-bottom: 1.5rem;
-    }
-
-    .content-box {
-      border: 3px solid #d4af37;
-      /* Gold border */
-      border-radius: 10px;
-      background-color: rgba(0, 0, 0, 0.2);
-      /* Dark, semi-transparent background */
-      padding: 2rem;
-      margin: 2rem auto;
-      max-width: 800px;
-      /* Limits width on large screens for readability */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      /* A soft shadow to lift the box */
-    }
-
-    /* Specific styling for the list within the collapsible component */
-    .list-unstyled li {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      margin-bottom: 0.75rem;
-      text-align: center;
-    }
-    .audio-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .audio-icon {
-            cursor: pointer;
-            font-size: 2em;
-            color: #000;
-        }
-
-        audio {
-            display: none;
-        }
-  </style>
 </head>
 
-<body>
+<body [style]="currentTheme.styles.body">
   <app-navbar></app-navbar>
 
   <div class="container py-5">
-    <h1 class="display-1 text-center text-warning"
+    <h1 class="display-1 text-center text-warning" [style]="currentTheme.styles.headings"
       style="font-family: 'Amiri', serif; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Extra Rulings</h1>
 
-    <div class="card content-box border-warning bg-transparent text-white">
+    <div class="card border-warning bg-transparent text-white" [style]="currentTheme.styles.contentBox">
       <div class="card-header bg-transparent border-0 d-flex justify-content-center">
         <button class="btn btn-warning w-75 fw-bold" type="button" data-bs-toggle="collapse"
           data-bs-target="#invalidationCollapse" aria-expanded="true" aria-controls="invalidationCollapse">
@@ -103,7 +30,7 @@
       </div>
       <div class="collapse" id="invalidationCollapse">
         <div class="card-body">
-          <ul class="list-unstyled">
+          <ul class="list-unstyled li" [style]="currentTheme.styles.text">
             <li *ngFor="let action of invalidation; let i = index">
               {{action}}
             </li>
@@ -112,7 +39,7 @@
       </div>
     </div>
 
-    <div class="card content-box border-warning bg-transparent text-white mt-5">
+    <div class="card border-warning bg-transparent text-white" [style]="currentTheme.styles.contentBox" mt-5>
       <div class="card-header bg-transparent border-0 d-flex justify-content-center">
         <button class="btn btn-warning w-75 fw-bold" type="button" data-bs-toggle="collapse"
           data-bs-target="#sajdahSawhCollapse" aria-expanded="false" aria-controls="sajdahSawhCollapse">
@@ -122,7 +49,7 @@
       </div>
       <div class="collapse" id="sajdahSawhCollapse">
         <div class="card-body">
-          <p class="text-center" id="SajdahAlSahw">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text" id="SajdahAlSahw">
             When one forgetfully misses a wajib act, they continue salah as usual. At the final sitting, they will
             recite the Tashahhud, and say salam looking over to the right shoulder immediately after Tashahhud and
             Shahadah, then go back into sajdah. They will perform 2 sajdahs and sit back up in the position of qa'dah.
@@ -133,7 +60,7 @@
       </div>
     </div>
 
-    <div class="card content-box border-warning bg-transparent text-white mt-5">
+    <div class="card border-warning bg-transparent text-white" [style]="currentTheme.styles.contentBox" mt-5>
       <div class="card-header bg-transparent border-0 d-flex justify-content-center">
         <button class="btn btn-warning w-75 fw-bold" type="button" data-bs-toggle="collapse"
           data-bs-target="#missedPrayersCollapse" aria-expanded="false" aria-controls="missedPrayersCollapse">
@@ -143,7 +70,7 @@
       </div>
       <div class="collapse" id="missedPrayersCollapse">
         <div class="card-body">
-          <p class="text-center" id="missedPrayers">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text" id="missedPrayers">
             Although it is haram to purposefully miss the salah in its specified time, if someone misses the time of
             prayer then he must make up the prayer. This is known as performing qada' salah. In performing qada' salah,
             it is only required to perform the Fard and Wajib Sets of the prayer.
@@ -155,7 +82,7 @@
       </div>
     </div>
 
-    <div class="card content-box border-warning bg-transparent text-white mt-5">
+    <div class="card border-warning bg-transparent text-white" [style]="currentTheme.styles.contentBox" mt-5>
       <div class="card-header bg-transparent border-0 d-flex justify-content-center">
         <button class="btn btn-warning w-75 fw-bold" type="button" data-bs-toggle="collapse"
           data-bs-target="#womenProcedureCollapse" aria-expanded="false" aria-controls="womenProcedureCollapse">
@@ -165,7 +92,7 @@
       </div>
       <div class="collapse" id="womenProcedureCollapse">
         <div class="card-body">
-          <ul class="list-unstyled">
+          <ul class="list-unstyled li" [style]="currentTheme.styles.text">
             <li *ngFor="let change of womenProcedure; let i = index">
               {{change}}
             </li>
@@ -174,7 +101,7 @@
       </div>
     </div>
 
-    <div class="card content-box border-warning bg-transparent text-white mt-5">
+    <div class="card border-warning bg-transparent text-white" [style]="currentTheme.styles.contentBox" mt-5>
       <div class="card-header bg-transparent border-0 d-flex justify-content-center">
         <button class="btn btn-warning w-75 fw-bold" type="button" data-bs-toggle="collapse"
           data-bs-target="#janazahCollapse" aria-expanded="false" aria-controls="janazahCollapse">
@@ -184,12 +111,12 @@
       </div>
       <div class="collapse" id="janazahCollapse">
         <div class="card-body">
-          <p class="text-center janazahParagraph">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">
             When a Muslim leaves this world, then it is mandatory upon the Muslim community of the deceased to properly
             prepare his or her Janazah. This includes the ghusl (bathing) of the deceased, performing the funeral prayer
             for the deceased and burying them properly.
           </p>
-          <p class="text-center janazahParagraph">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">
             The Salah al-Janazah is performed by men only and must be performed outside of the Masjid. The deceased
             should be laid in front of the Imam and the rest of the people performing the prayer will be lined up in
             rows behind the Imam, similar to how they are in normal congregation. Then, everyone must make the intention
@@ -197,10 +124,10 @@
             his navel just how one stands in qiyam for the usual salah. The followers will do the same. At this same
             time, everyone should quietly recite the thana with just one small addition.
           </p>
-          <div id="recitations">
-            <p class="text-center">{{janazah.Thana}}</p>
+          <div id="recitations" [style]="currentTheme.styles.recitations">
+            <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">{{janazah.Thana}}</p>
             <div class="audio-container">
-              <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer3)">
+              <button class="btn-warning" [style]="currentTheme.styles.buttons" (click)="togglePlayPause(audioPlayer3)">
               <ng-container *ngIf="audioPlayer3.paused==true">
                 <div class="play-button"></div>
               </ng-container>
@@ -215,17 +142,17 @@
             
 
           </div>
-          <p class="text-center janazahParagraph">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">
           After reciting the thana', the Imam will say takbir again, but no one should raise their hands. After this
           second takbir, everyone will quietly recite Salah Ibrahimi as it is recited in salah. Now, the Imam will say
           the takbir for the third time, after which everyone will recite the du'a that's made for the deceased person
           <br>
           If the deceased person is an adult, then everyone should quietly recite:
         </p>
-        <div id="recitations">
-          <p class="text-center">{{janazah.AdultVer}}</p>
+        <div id="recitations" [style]="currentTheme.styles.recitations">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">{{janazah.AdultVer}}</p>
           <div class="audio-container">
-              <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
+              <button class="btn-warning" [style]="currentTheme.styles.buttons" (click)="togglePlayPause(audioPlayer)">
               <ng-container *ngIf="audioPlayer.paused==true">
                 <div class="play-button"></div>
               </ng-container>
@@ -238,13 +165,13 @@
             </audio>
             </div>
         </div>
-        <p class="text-center janazahParagraph">
+        <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">
           If the deceased person is a male child, then they will recite
         </p>
-        <div id="recitations">
-          <p class="text-center">{{janazah.BoyChild}}</p>
+        <div id="recitations" [style]="currentTheme.styles.recitations">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">{{janazah.BoyChild}}</p>
           <div class="audio-container">
-              <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer1)">
+              <button class="btn-warning" [style]="currentTheme.styles.buttons" (click)="togglePlayPause(audioPlayer1)">
               <ng-container *ngIf="audioPlayer1.paused==true">
                 <div class="play-button"></div>
               </ng-container>
@@ -257,13 +184,13 @@
             </audio>
             </div>
         </div>
-        <p class="text-center janazahParagraph">
+        <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">
           If the deceased person is a female child, then they will recite
         </p>
-        <div id="recitations">
-          <p class="text-center">{{janazah.GirlChild}}</p>
+        <div id="recitations" [style]="currentTheme.styles.recitations">
+          <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">{{janazah.GirlChild}}</p>
           <div class="audio-container">
-              <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer2)">
+              <button class="btn-warning" [style]="currentTheme.styles.buttons" (click)="togglePlayPause(audioPlayer2)">
               <ng-container *ngIf="audioPlayer2.paused==true">
                 <div class="play-button"></div>
               </ng-container>
@@ -276,7 +203,7 @@
             </audio>
             </div>
         </div>
-        <p class="text-center janazahParagraph">
+        <p class="text-center janazahParagraph" [style]="currentTheme.styles.text">
           Now after this du'a, the Imam will say takbir for the fourth and final time and everyone should drop their
           hands to their sides. After this takbir, the Imam will conclude the prayer just as salah is concluded with the
           salam.
