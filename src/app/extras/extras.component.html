@@ -13,14 +13,14 @@
     rel="stylesheet">
   <style>
     body {
-      /* A deep, rich green background often found in Islamic art */
-      background-color: #0d422a;
-      /* A subtle geometric pattern for texture */
-
-      /* Using a clean, readable font for body text */
+      background: linear-gradient(135deg, #659DBD 25%, #DAAD86 50%, #BC986A 75%, #FBEEC1 100%) !important;
       font-family: 'Poppins', sans-serif;
-      /* A warm, off-white for text to contrast with the dark background */
-      color: #f5eeda;
+      color: #FFFFFF;
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     h1,
@@ -47,17 +47,14 @@
     }
 
     .content-box {
-      border: 3px solid #d4af37;
-      /* Gold border */
-      border-radius: 10px;
-      background-color: rgba(0, 0, 0, 0.2);
-      /* Dark, semi-transparent background */
+      background: rgba(255, 255, 255, 0.15) !important;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
       padding: 2rem;
       margin: 2rem auto;
       max-width: 800px;
-      /* Limits width on large screens for readability */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      /* A soft shadow to lift the box */
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
 
     /* Specific styling for the list within the collapsible component */

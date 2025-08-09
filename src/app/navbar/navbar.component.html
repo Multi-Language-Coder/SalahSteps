@@ -2,22 +2,41 @@
             integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 <div>
     
-            <nav class="navbar navbar-expand-sm bg-success">
+            <nav class="navbar navbar-expand-sm bg-success" [attr.data-bs-theme]="currentTheme?.name === 'classic-islamic' ? 'dark' : 'light'">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/wudu">Wudu Page</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/salah/fajr">Salah Fajr</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/salah/zuhr">Salah Zuhr</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/salah/asr">Salah Asr</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/salah/maghrib">Salah Magrihb</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/salah/isha">Salah Isha</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/extras">Extra Rulings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/qibla">Qibla Finder</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
-                </ul>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="/wudu">Wudu Page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/salah/fajr">Salah Fajr</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/salah/zuhr">Salah Zuhr</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/salah/asr">Salah Asr</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/salah/maghrib">Salah Maghrib</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/salah/isha">Salah Isha</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/extras">Extra Rulings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/qibla">Qibla Finder</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                    </ul>
+                    
+                    <!-- Theme Selector Dropdown -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                🎨 {{ currentTheme?.displayName || 'Theme' }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li *ngFor="let theme of themes">
+                                    <a class="dropdown-item" 
+                                       [class.active]="currentTheme?.name === theme.name"
+                                       (click)="changeTheme(theme.name)"
+                                       style="cursor: pointer;">
+                                        {{ theme.displayName }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </div>

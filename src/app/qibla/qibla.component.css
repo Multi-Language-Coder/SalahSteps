@@ -1,13 +1,7 @@
 body {
-    /* A deep, rich green background often found in Islamic art */
-    background-color: #0d422a !important;
-    /* A subtle geometric pattern for texture */
-    background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
-    /* Using a clean, readable font for body text */
+    background: linear-gradient(135deg, #659DBD 25%, #DAAD86 50%, #BC986A 75%, #FBEEC1 100%) !important;
     font-family: 'Poppins', sans-serif;
-    /* A warm, off-white for text to contrast with the dark background */
-    color: #f5eeda;
-    /* Ensure the body always takes up at least the full viewport height */
+    color: #FFFFFF;
     min-height: 100vh;
     background-size: cover;
     background-position: center;
@@ -97,13 +91,14 @@ li, p#SajdahAlSahw, p#missedPrayers, p#womenProcedure, p.janazahParagraph {
 }
 
 .card-box {
-    background-color: #f5eeda; /* Off-white for the content box */
+    background: rgba(255, 255, 255, 0.15) !important;
     margin: 20px auto;
-    padding: 20px;
-    border: 3px solid #d4af37;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     max-width: 800px;
+    backdrop-filter: blur(15px);
 }
 
 #recitations {
@@ -246,10 +241,11 @@ html, body {
 .compass-container {
     width: min(80vw, 300px);
     height: min(80vw, 300px);
-    border: 6px solid #d4af37;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(15px);
+    border: 6px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     position: relative;
-    background-color: rgba(245, 238, 218, 0.9);
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     margin: 0 auto;
     display: flex;

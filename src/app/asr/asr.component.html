@@ -6,23 +6,23 @@
         <title>Asr Prayer</title>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-        .audio-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
+.audio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
 
-        .audio-icon {
-            cursor: pointer;
-            font-size: 2em;
-            color: #000;
-        }
+.audio-icon {
+    cursor: pointer;
+    font-size: 2em;
+    color: #000;
+}
 
-        audio {
-            display: none;
-        }
-    </style>
+audio {
+    display: none;
+}
+</style>
     </head>
     <body>
         <app-navbar></app-navbar>
@@ -30,19 +30,19 @@
         <hr id="breaker">
         <h4 class="text-center" style="color:rgb(175, 175, 175)">Asr is a prayer that has 2 sets, and within those 2 sets, are 4 Units of Sunnah Ghayr Mu'akkadah, and 4 units of Fard</h4>
         
-        <div class="set-container" *ngFor="let set of setsAmount">
-            <div class="text-center">
+        <div *ngFor="let set of setsAmount">
+            <div class="text-center" style="margin: 20px 0;">
                 <button 
-            class="btn btn-success" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            [attr.data-bs-target]="set.c"
-            aria-expanded="false" 
-            aria-controls="collapseContent">
-        Open / Collapse Set {{set.set}}
-        </button> 
+                class="btn btn-success" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                [attr.data-bs-target]="set.c"
+                aria-expanded="false" 
+                aria-controls="collapseContent">
+            Open / Collapse Set {{set.set}}
+            </button> 
             </div>
-            <div class="three-dimesion-1" style="margin: 20px;">
+            <div class="set-container">
             <div id="set1">
             <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Asr ({{set.prayer}})</h2>
             <div id="collapseContent{{set.set}}" class="collapse">
@@ -50,7 +50,7 @@
                    <div *ngIf="step.step <= set.units">
                      <h3 class="text-center">Step Number #{{step.step}}</h3>
                     <p class="text-center">{{step.action}}</p>
-                    <div style="border:2px solid black;" *ngIf="step.recitation" id="recitations">
+                    <div *ngIf="step.recitation" id="recitations">
                         <p *ngFor="let recitation of step.recitation">
                              <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
                         </p>
@@ -68,16 +68,12 @@
                                             <source [src]="audio" type="audio/mpeg">
                                         </audio>
                                     </ng-container>
-
                                 </div>
                     </div>
-                    
-                        
                    </div>
                 </div>
             </div>
         </div>
-        
         </div>
         </div>
     </body>
