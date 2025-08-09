@@ -30,7 +30,7 @@
         <hr id="breaker">
         <h4 class="text-center" style="color:rgb(175, 175, 175)">Asr is a prayer that has 2 sets, and within those 2 sets, are 4 Units of Sunnah Ghayr Mu'akkadah, and 4 units of Fard</h4>
         
-        <div *ngFor="let set of setsAmount">
+        <div class="set-container" *ngFor="let set of setsAmount">
             <div class="text-center">
                 <button 
             class="btn btn-success" 
@@ -41,8 +41,8 @@
             aria-controls="collapseContent">
         Open / Collapse Set {{set.set}}
         </button> 
-            </div>"
-            <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
+            </div>
+            <div class="three-dimesion-1" style="margin: 20px;">
             <div id="set1">
             <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Asr ({{set.prayer}})</h2>
             <div id="collapseContent{{set.set}}" class="collapse">

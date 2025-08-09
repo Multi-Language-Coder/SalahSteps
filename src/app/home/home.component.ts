@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { takeUntil, finalize } from 'rxjs/operators';
 import { PrayerTimesService } from '../services/prayer-times.service';
 import { LoadingService } from '.././loading.service';
+import { PrayerCalculationService } from '../services/prayer-calculation.service';
 
 @Component({
   selector: 'app-home',
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     
     navigator.geolocation.getCurrentPosition(
       (position) => this.onLocationSuccess(position),
-      (error) => this.onLocationError(error),
+      (error) => this.handleLocationError('Location access denied or unavailable'),
       { timeout: 10000, enableHighAccuracy: true }
     );
   }
@@ -62,112 +63,63 @@ export class HomeComponent implements OnInit, OnDestroy {
   private onLocationSuccess(position: GeolocationPosition): void {
     const { latitude, longitude } = position.coords;
     console.log('Latitude: ' + latitude + '\nLongitude: ' + longitude);
+    
+    // Get location details for display
     this.prayerTimesService.getLocationDetails(latitude, longitude)
       .pipe(
-        takeUntil(this.destroy$),
-        finalize(() => this.loadingService.hide())
+        takeUntil(this.destroy$)
       )
       .subscribe({
-        next: (locationData) => {
-          if (locationData) {
+        next: (locationData: any) => {
+          if (locationData && locationData.display_name) {
             this.location = locationData.display_name;
-            this.loadPrayerTimes();
+          } else {
+            this.location = `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`;
           }
+          this.loadPrayerTimes();
         },
-        error: () => this.handleLocationError('Unable to get location details.')
+        error: () => {
+          this.location = `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`;
+          this.loadPrayerTimes();
+        }
       });
   }
 
-
-isTimeBetween(startTime: string, endTime: string | undefined, targetTime: string): boolean {
-  if (!endTime) {
-    // For the last prayer (Isha), check if current time is after Isha
-    const start = new Date(`2024-01-01T${startTime}`);
-    const target = new Date(`2024-01-01T${targetTime}`);
-    return target >= start;
-  }
-
-  const start = new Date(`2024-01-01T${startTime}`);
-  const end = new Date(`2024-01-01T${endTime}`);
-  const target = new Date(`2024-01-01T${targetTime}`);
-
-  if (end < start) {
-    return target >= start || target <= end;
-  }
-
-  return target >= start && target <= end;
-}
-  private onLocationError(error: GeolocationPositionError): void {
-    this.loadingService.hide();
-    let message = 'Location access denied. ';
-    
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        message += 'Please enable location access and refresh the page.';
-        break;
-      case error.POSITION_UNAVAILABLE:
-        message += 'Location information is unavailable.';
-        break;
-      case error.TIMEOUT:
-        message += 'Location request timed out.';
-        break;
-    }
-    
-    this.handleLocationError(message);
-  }
-
-    private loadPrayerTimes(): void {
+  private loadPrayerTimes(): void {
     this.loadingService.show();
-    
-    this.prayerTimesService.getPrayerTimes()
+    this.prayerTimesService.getPrayerTimes(this.location)
       .pipe(
         takeUntil(this.destroy$),
         finalize(() => this.loadingService.hide())
       )
       .subscribe({
         next: (response) => {
-          console.log('Prayer times response:', response); // Debug log
-          if (response?.data?.praytimes) {
-            this.processPrayerTimes(response);
+          if (response && response.data && response.data.praytimes) {
+            const today = Object.keys(response.data.praytimes)[0];
+            const todayPrayers = response.data.praytimes[today];
+            
+            this.prayers = [
+              { name: "Fajr", time: todayPrayers.Fajr },
+              { name: "Sunrise", time: todayPrayers.Sunrise },
+              { name: "Dhuhr", time: todayPrayers.Dhuhr },
+              { name: "Asr", time: todayPrayers.Asr },
+              { name: "Maghrib", time: todayPrayers.Maghrib },
+              { name: "Isha", time: todayPrayers["Isha'a"] }
+            ];
+            
             this.hasError = false;
-          } else {
-            console.log('No prayer times data in response'); // Debug log
-            this.hasError = true;
           }
         },
         error: (error) => {
-          console.error('Prayer times error:', error); // Debug log
+          console.error('Prayer times error:', error);
           this.hasError = true;
         }
       });
   }
-  private processPrayerTimes(response: PrayerTimeResponse): void {
-    const todayISO = new Date().toISOString().split('T')[0];
-    const today = new Date().toLocaleDateString('en-GB', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short'
-    }).replace(/,/g, '');
-    console.log(today)
-    const timings = response.data.praytimes[today];
-    console.log(timings)
-    if (timings) {
-      this.prayers = [
-        { name: "Fajr", time: timings.Fajr },
-        { name: "Sunrise", time: timings.Sunrise },
-        { name: "Dhuhr", time: timings.Dhuhr },
-        { name: "Asr", time: timings.Asr },
-        { name: "Maghrib", time: timings.Maghrib },
-        { name: "Isha", time: timings["Isha'a"] }
-      ];
-    }
-  }
 
   private handleLocationError(message: string): void {
     console.error(message);
-    this.hasError = true;
-    // Load default location prayer times
-    this.location = 'Randallstown, MD (Default)';
+    this.location = 'Randallstown';
     this.loadPrayerTimes();
   }
 
@@ -191,6 +143,28 @@ isTimeBetween(startTime: string, endTime: string | undefined, targetTime: string
   retryLoadPrayerTimes(): void {
     this.hasError = false;
     this.getCurrentLocation();
+  }
+
+  isTimeBetween(currentPrayerTime: string, nextPrayerTime: string, currentTime: string): boolean {
+    if (!currentPrayerTime || !nextPrayerTime || !currentTime) {
+      return false;
+    }
+
+    const parseTime = (timeStr: string): number => {
+      const [hours, minutes] = timeStr.split(':').map(Number);
+      return hours * 60 + minutes;
+    };
+
+    const current = parseTime(currentTime);
+    const prayerStart = parseTime(currentPrayerTime);
+    const prayerEnd = parseTime(nextPrayerTime);
+
+    // Handle case where prayer spans midnight
+    if (prayerEnd < prayerStart) {
+      return current >= prayerStart || current < prayerEnd;
+    }
+
+    return current >= prayerStart && current < prayerEnd;
   }
 }
 interface subPrayerData {

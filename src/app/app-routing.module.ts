@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { ExtrasComponent } from './extras/extras.component';
 import { QiblaComponent } from './qibla/qibla.component';
+import { HijriCalendarComponent } from './hijri-calendar/hijri-calendar.component';
 
 const routes: Routes = [
   {path:"wudu", component:WuduComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:"home",component:HomeComponent},
   {path:"extras", component:ExtrasComponent},
   {path:"qibla", component:QiblaComponent},
+  {path:"hijri-calendar", component:HijriCalendarComponent},
   {path:"**", component:ErrorComponent, pathMatch:"full"},
 ];
 

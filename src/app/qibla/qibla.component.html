@@ -77,14 +77,14 @@
 
         <div class="text-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-2" id="heading-label">Current Heading:</h2>
-            <p id="heading-display" class="text-5xl font-extrabold text-blue-600">{{currentHeading}}°</p>
+            <h5 id="heading-label" class="text-5xl font-extrabold text-blue-600">{{currentHeading}}°</h5>
         </div>
 
         <div class="text-center mb-8">
             <button 
                 *ngIf="isOrientationSupported" 
                 (click)="requestCompassPermission()" 
-                class="compass-enable-btn">
+                class="compass-enable-btn three-dimesion">
                 🧭 Enable Compass
             </button>
             <p *ngIf="!isOrientationSupported" class="text-red-600 font-semibold bg-red-50 p-4 rounded-lg border border-red-200">
