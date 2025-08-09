@@ -1,34 +1,23 @@
-<nav class="navbar navbar-expand-sm bg-success">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+<div>
+    
+            <nav class="navbar navbar-expand-sm bg-success">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarSupportedContent" class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item"><a class="nav-link" href="/wudu">Wudu Page</a></li>
-            <li class="nav-item"><a class="nav-link" href="/salah/fajr">Salah Fajr</a></li>
-            <li class="nav-item"><a class="nav-link" href="/salah/zuhr">Salah Zuhr</a></li>
-            <li class="nav-item"><a class="nav-link" href="/salah/asr">Salah Asr</a></li>
-            <li class="nav-item"><a class="nav-link" href="/salah/maghrib">Salah Maghrib</a></li>
-            <li class="nav-item"><a class="nav-link" href="/salah/isha">Salah Isha</a></li>
-            <li class="nav-item"><a class="nav-link" href="/extras">Extra Rulings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/qibla">Qibla</a></li>
-            <li class="nav-item"><a class="nav-link" href="/hijri-calendar">Hijri Calendar</a></li>
-        </ul>
-        <div class="navbar-nav">
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    🎨 Theme
-                </a>
-                <ul class="dropdown-menu">
-                    <li *ngFor="let theme of themes">
-                        <a class="dropdown-item" 
-                           [class.active]="theme.name === currentTheme.name"
-                           (click)="selectTheme(theme.name)">
-                            {{theme.displayName}}
-                        </a>
-                    </li>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/wudu">Wudu Page</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/fajr">Salah Fajr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/zuhr">Salah Zuhr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/asr">Salah Asr</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/maghrib">Salah Magrihb</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/salah/isha">Salah Isha</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/extras">Extra Rulings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/qibla">Qibla Finder</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
                 </ul>
-            </div>
+                </div>
+            </nav>
         </div>
-    </div>
-</nav>

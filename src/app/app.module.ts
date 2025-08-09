@@ -17,7 +17,6 @@ import { QiblaComponent } from './qibla/qibla.component';
 import { LoadingService } from './loading.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HijriCalendarComponent } from './hijri-calendar/hijri-calendar.component';
-import { ThemeService } from './services/theme.service';
 
 @NgModule({
   declarations: [
@@ -42,10 +41,9 @@ import { ThemeService } from './services/theme.service';
     HttpClientModule,
   ],
   providers: [
-    LoadingService,
-    ThemeService,
-    provideHttpClient(withInterceptorsFromDi()),
-  ],
+  LoadingService,
+  provideHttpClient(withInterceptorsFromDi()),
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

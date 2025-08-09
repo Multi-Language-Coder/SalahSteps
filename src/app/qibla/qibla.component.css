@@ -1,24 +1,37 @@
 body {
-  background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 50%, #F0E68C 100%);
-  font-family: 'Poppins', sans-serif;
-  color: #FFFFFF;
-  min-height: 100vh;
-  background-attachment: fixed;
+    /* A deep, rich green background often found in Islamic art */
+    background-color: #0d422a !important;
+    /* A subtle geometric pattern for texture */
+    background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+    /* Using a clean, readable font for body text */
+    font-family: 'Poppins', sans-serif;
+    /* A warm, off-white for text to contrast with the dark background */
+    color: #f5eeda;
+    /* Ensure the body always takes up at least the full viewport height */
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1, h4 {
-  font-family: 'Poppins', sans-serif;
-  color: #FFFFFF;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  font-weight: 700;
+    /* Using Amiri, a classic Arabic-style serif font for headings */
+    font-family: 'Amiri', serif;
+    /* A gold color for accents and prominence */
+    color: #d4af37;
+    /* A subtle shadow to make the text stand out */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 h2#heading-label {
-  font-family: 'Poppins', sans-serif;
-  color: #FFFFFF;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  text-align: center;
+    font-family: 'Amiri', serif;
+    /* A gold color for accents and prominence */
+    color: #d4af37;
+    /* A subtle shadow to make the text stand out */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 h1 {
@@ -36,19 +49,19 @@ h2, h3, p {
 }
 
 h2 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Amiri', serif;
     font-size: 3rem;
 }
 
 h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Amiri', serif;
     font-size: 2rem;
 }
 
 li, p#SajdahAlSahw, p#missedPrayers, p#womenProcedure, p.janazahParagraph {
     padding: 10px;
     /* Changed color to a gold accent */
-    color: #DAAD86;
+    color: #d3a81d;
     /* Added a text shadow for better visibility on dark backgrounds */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
@@ -56,7 +69,7 @@ li, p#SajdahAlSahw, p#missedPrayers, p#womenProcedure, p.janazahParagraph {
 #breaker {
     border: none;
     /* Removes all default borders */
-    border-top: 20px solid #BC986A;
+    border-top: 20px solid #d4af37;
     /* Sets a solid gold top border */
     max-width: 800px;
     margin: 20px auto;
@@ -67,41 +80,37 @@ li, p#SajdahAlSahw, p#missedPrayers, p#womenProcedure, p.janazahParagraph {
 }
 
 .btn-success {
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: #FFFFFF;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 0.8rem 2rem;
-  margin-top: 1rem;
-  border-radius: 25px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+    /* A rich green button with a gold border */
+    background-color: #0a7541;
+    border-color: #d4af37;
+    color: #f5eeda;
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .btn-success:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background-color: #0d422a;
+    border-color: #f5eeda;
 }
 
 .card-box {
-  background: rgba(255, 255, 255, 0.9);
-  margin: 20px auto;
-  padding: 30px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  backdrop-filter: blur(10px);
+    background-color: #f5eeda; /* Off-white for the content box */
+    margin: 20px auto;
+    padding: 20px;
+    border: 3px solid #d4af37;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    max-width: 800px;
 }
 
 #recitations {
-    border: 2px solid #BC986A !important; /* Gold border for recitations */
+    border: 2px solid #d4af37 !important; /* Gold border for recitations */
     padding: 15px;
     margin-top: 15px;
-    background-color: rgba(251, 238, 193, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
 }
 
@@ -112,17 +121,17 @@ li, p#SajdahAlSahw, p#missedPrayers, p#womenProcedure, p.janazahParagraph {
     margin:20px;
     width: 70px;
     height: 70px;
-    background-color: #659DBD; /* A green color similar to Tailwind's green-600 */
-    border: 8px solid #BC986A; /* A gold color similar to Tailwind's amber-400 */
+    background-color: #16A34A; /* A green color similar to Tailwind's green-600 */
+    border: 8px solid #F59E0B; /* A gold color similar to Tailwind's amber-400 */
     border-radius: 50%; /* Makes the container a circle */
-    box-shadow: 0 0 15px rgba(188, 152, 106, 0.75), 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.75), 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
 }
 
 .audio-icon-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 25px rgba(188, 152, 106, 1), 0 6px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 25px rgba(245, 158, 11, 1), 0 6px 8px rgba(0, 0, 0, 0.3);
 }
 
 .play-button {
@@ -144,9 +153,9 @@ html, body {
 }
 
 .card-body {
-    border: 2px solid #BC986A;
+    border: 2px solid #d4af37;
     border-radius:5px;
-    background-color: #FBEEC1;
+    background-color: #f5eeda;
     color: #333;
 }
 
@@ -225,8 +234,8 @@ html, body {
         from 0deg,
         transparent 0deg,
         transparent var(--start-angle, 315deg),
-        rgba(188, 152, 106, 0.3) var(--start-angle, 315deg),
-        rgba(188, 152, 106, 0.3) var(--end-angle, 45deg),
+        rgba(212, 175, 55, 0.3) var(--start-angle, 315deg),
+        rgba(212, 175, 55, 0.3) var(--end-angle, 45deg),
         transparent var(--end-angle, 45deg),
         transparent 360deg
     );
@@ -237,11 +246,11 @@ html, body {
 .compass-container {
     width: min(80vw, 300px);
     height: min(80vw, 300px);
-    border: 6px solid #BC986A;
+    border: 6px solid #d4af37;
     border-radius: 50%;
     position: relative;
     background-color: rgba(245, 238, 218, 0.9);
-    box-shadow: 0 0 20px rgba(188, 152, 106, 0.6);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -258,7 +267,7 @@ html, body {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 20px solid #BC986A;
+    border-bottom: 20px solid #d4af37;
     z-index: 10;
 }
 
@@ -284,18 +293,18 @@ html, body {
 .needle-bottom {
     width: 100%;
     height: 50%;
-    background-color: #BC986A;
+    background-color: #d4af37;
     clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
 /* Enhanced cardinal points */
 .cardinal-point {
     position: absolute;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Amiri', serif;
     font-size: 1.2rem;
     font-weight: bold;
     color: #0d422a;
-    text-shadow: 1px 1px 2px rgba(188, 152, 106, 0.7);
+    text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.7);
     z-index: 10;
 }
 
@@ -312,14 +321,14 @@ html, body {
 
 .compass-enable-btn {
     background: linear-gradient(135deg, #0a7541, #16a34a);
-    border: 3px solid #BC986A;
-    color: #FBEEC1;
-    font-family: 'Poppins', sans-serif;
+    border: 3px solid #d4af37;
+    color: #f5eeda;
+    font-family: 'Amiri', serif;
     font-weight: bold;
     font-size: 1.5rem;
     padding: 1.2rem 2.5rem;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(188, 152, 106, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     cursor: pointer;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -340,9 +349,9 @@ html, body {
 
 .compass-enable-btn:hover {
     background: linear-gradient(135deg, #16a34a, #22c55e);
-    border-color: #FBEEC1;
+    border-color: #f5eeda;
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(188, 152, 106, 0.6), 0 8px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6), 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
 .compass-enable-btn:hover::before {

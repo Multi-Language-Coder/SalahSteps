@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ThemeService, Theme } from '../services/theme.service';
+import { Component } from '@angular/core';
 import { enviroment } from '../../enviroment/enviroment';
 
 @Component({
@@ -8,22 +7,10 @@ import { enviroment } from '../../enviroment/enviroment';
   templateUrl: './extras.component.html',
   styleUrl: './extras.component.css'
 })
-export class ExtrasComponent implements OnInit {
-  currentTheme: Theme;
+export class ExtrasComponent {
   invalidation = enviroment.invalidation;
   womenProcedure = enviroment.womenProcedure;
   janazah = enviroment.SalahAlJanazah;
-  
-  constructor(private themeService: ThemeService) {
-    this.currentTheme = this.themeService.getCurrentTheme();
-  }
-
-  ngOnInit(): void {
-    this.themeService.currentTheme$.subscribe(theme => {
-      this.currentTheme = theme;
-    });
-  }
-
   togglePlayPause(audioPlayer: HTMLAudioElement): void {
     if (audioPlayer.paused) {
       audioPlayer.play();
