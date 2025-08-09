@@ -8,11 +8,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom CSS for the compass needle and container */
+        body {
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 50%, #F0E68C 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
         .compass-container {
             width: min(80vw, 300px);
             height: min(80vw, 300px);
-            border: 4px solid #4a5568;
+            border: 4px solid rgba(255, 255, 255, 0.3);
             position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .compass-needle {

@@ -8,22 +8,89 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <style>
+        body {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #093637 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        h1, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h2, h3 {
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #breaker {
+            border: none;
+            border-top: 3px solid rgba(255, 255, 255, 0.4);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .btn-outline-dark {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn-outline-dark:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
         .card-image {
             border-radius: .5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-container {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .breakage-container {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 
 <body>
     <app-navbar></app-navbar>
-    <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Steps to Making Wudu</h1>
+    <h1 class="text-center display-1" style="font-weight:bold;">Steps to Making Wudu</h1>
     <hr id="breaker">
-    <h4 class="text-center" style="color:rgb(175, 175, 175)">A guide to the ritual of purification before prayer</h4>
+    <h4 class="text-center">A guide to the ritual of purification before prayer</h4>
     
     <div class="container">
         <div *ngFor="let step of stepsOfWudu; let i = index">
-            <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
+            <div class="step-container">
                 <h2 style="margin-bottom:20px;" class="text-center display-6">Step {{i + 1}}: {{step.step}}</h2>
                 <div class="images d-flex flex-wrap gap-3 justify-content-center" *ngIf="step.image">
                     <img *ngFor="let image of step.image" [src]="image"
@@ -32,7 +99,7 @@
             </div>
         </div>
         
-        <div style="background-color:rgb(212, 212, 212); margin: 20px; padding: 20px; border: 2px solid black; border-radius: 10px;">
+        <div class="breakage-container">
             <h2 class="text-center display-6" style="margin-bottom:20px;">Ways Wudu Can Be Broken</h2>
             <div class="text-center">
                 <div *ngFor="let reason of breakWudu" class="mb-2">

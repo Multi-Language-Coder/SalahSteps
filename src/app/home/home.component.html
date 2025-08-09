@@ -4,13 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #093637 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        h1, h3, h4, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .prayer-times-container, .general-details-container {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .table {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .table th, .table td {
+            color: #2C3E50;
+            border-color: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
+
+        .table-success {
+            background-color: rgba(40, 167, 69, 0.3) !important;
+        }
+
+        .table-success td {
+            color: #1B4332;
+            font-weight: 700;
+        }
+
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <app-navbar></app-navbar>
-    <h1 style="margin-bottom:20px;margin-top:20px;color:rgb(175, 175, 175)" class="text-center">The Salah Website Project By: </h1>
-    <h3 style="margin-bottom:50px;color:rgb(175, 175, 175)" class="text-center">Boubacar Thiam</h3>
+    <h1 style="margin-bottom:20px;margin-top:20px;" class="text-center">The Salah Website Project By: </h1>
+    <h3 style="margin-bottom:50px;" class="text-center">Boubacar Thiam</h3>
     <p style="font-size:1px;" class="text-center">MALIK BEARD</p>
-    <div style="border:4px solid black; border-radius:10px; padding:20px; background-color:rgb(212, 212, 212);">
+    <div class="prayer-times-container">
     <h4 class="text-center">Prayer Times</h4>
     <table class="table table-striped">
         <thead>
@@ -43,7 +99,7 @@
   </div>
 </div>
 </div>
-        <div style="border:4px solid black; border-radius:10px; padding:20px; background-color:rgb(212, 212, 212); margin-top:20px;">
+        <div class="general-details-container">
             <h4 class="text-center">General Details</h4>
         <h6 class="text-center">Location: <br> {{location}}</h6>
         <h6 class="text-center">Current Time: <br> {{currTime}}</h6>

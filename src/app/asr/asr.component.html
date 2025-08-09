@@ -6,6 +6,77 @@
         <title>Asr Prayer</title>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
+        body {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #093637 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        h1, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h2, h3 {
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #breaker {
+            border: none;
+            border-top: 3px solid rgba(255, 255, 255, 0.4);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .btn-success {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.8rem 2rem;
+            margin-top: 1rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .set-container {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        #recitations {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            padding: 15px;
+        }
+
+        #recitations p, #recitations span {
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
         .audio-container {
             display: flex;
             justify-content: center;
@@ -13,24 +84,77 @@
             margin-top: 10px;
         }
 
-        .audio-icon {
+        .audio-icon-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
             cursor: pointer;
-            font-size: 2em;
-            color: #000;
+        }
+
+        .audio-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .play-button {
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            transform: translateX(2px);
+        }
+
+        .pause-button {
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            position: relative;
+        }
+
+        .pause-button::before, .pause-button::after {
+            content: "";
+            position: absolute;
+            top: 20%;
+            bottom: 20%;
+            width: 6px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        .pause-button::before {
+            left: 6px;
+        }
+
+        .pause-button::after {
+            right: 6px;
         }
 
         audio {
             display: none;
         }
+
+        p {
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
     </style>
     </head>
     <body>
         <app-navbar></app-navbar>
-        <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Asr Prayer</h1>
+        <h1 class="text-center display-1" style="font-weight:bold;">Asr Prayer</h1>
         <hr id="breaker">
-        <h4 class="text-center" style="color:rgb(175, 175, 175)">Asr is a prayer that has 2 sets, and within those 2 sets, are 4 Units of Sunnah Ghayr Mu'akkadah, and 4 units of Fard</h4>
+        <h4 class="text-center">Asr is a prayer that has 2 sets, and within those 2 sets, are 4 Units of Sunnah Ghayr Mu'akkadah, and 4 units of Fard</h4>
         
-        <div class="set-container" *ngFor="let set of setsAmount">
+        <div *ngFor="let set of setsAmount;">
             <div class="text-center">
                 <button 
             class="btn btn-success" 
@@ -42,43 +166,44 @@
         Open / Collapse Set {{set.set}}
         </button> 
             </div>
-            <div class="three-dimesion-1" style="margin: 20px;">
-            <div id="set1">
-            <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Asr ({{set.prayer}})</h2>
-            <div id="collapseContent{{set.set}}" class="collapse">
-                <div *ngFor="let step of stepsOfSalah" class="step text-center">
-                   <div *ngIf="step.step <= set.units">
-                     <h3 class="text-center">Step Number #{{step.step}}</h3>
-                    <p class="text-center">{{step.action}}</p>
-                    <div style="border:2px solid black;" *ngIf="step.recitation" id="recitations">
-                        <p *ngFor="let recitation of step.recitation">
-                             <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
-                        </p>
-                         <div *ngIf="step.audioFile!=undefined" class="audio-container">
-                                    <ng-container *ngFor="let audio of step.audioFile;">
-                                        <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
-                                            <ng-container *ngIf="audioPlayer.paused==true">
-                                                <div class="play-button"></div>
-                                            </ng-container>
-                                            <ng-container *ngIf="audioPlayer.paused==false">
-                                                <div class="pause-button"></div>
-                                            </ng-container>
-                                        </button>
-                                        <audio #audioPlayer>
-                                            <source [src]="audio" type="audio/mpeg">
-                                        </audio>
-                                    </ng-container>
+            <div class="set-container">
+                <div id="set1">
+                <h2 style="margin-bottom:20px;" class="text-center display-2">Set {{set.set}} of Asr ({{set.prayer}})</h2>
+                <div id="collapseContent{{set.set}}" class="collapse">
+                    <div *ngFor="let step of stepsOfSalah" class="step text-center">
+                       <div *ngIf="step.step <= set.units">
+                         <h3 class="text-center">Step Number #{{step.step}}</h3>
+                        <p class="text-center">{{step.action}}</p>
+                        <div *ngIf="step.recitation" id="recitations">
+                            <p *ngFor="let recitation of step.recitation">
+                                 <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
+                            </p>
+                             <div *ngIf="step.audioFile!=undefined" class="audio-container">
+                                        <ng-container *ngFor="let audio of step.audioFile;">
+                                            <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
+                                                <ng-container *ngIf="audioPlayer.paused==true">
+                                                    <div class="play-button"></div>
+                                                </ng-container>
+                                                <ng-container *ngIf="audioPlayer.paused==false">
+                                                    <div class="pause-button"></div>
+                                                </ng-container>
+                                            </button>
+                                            <audio #audioPlayer>
+                                                <source [src]="audio" type="audio/mpeg">
+                                            </audio>
+                                        </ng-container>
 
-                                </div>
-                    </div>
-                    
+                                    </div>
+                        </div>
                         
-                   </div>
+                            
+                       </div>
+                    </div>
                 </div>
+            </div>
+            
             </div>
         </div>
         
-        </div>
-        </div>
     </body>
 </html>
