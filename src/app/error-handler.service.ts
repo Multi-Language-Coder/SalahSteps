@@ -35,6 +35,6 @@ export class ErrorHandlerService {
 
   private showErrorMessage(message: string): void {
     // You can replace this with a toast service or modal
-    alert(message);
+    //alert(message);
   }
 }

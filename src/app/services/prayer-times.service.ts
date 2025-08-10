@@ -20,7 +20,7 @@ export class PrayerTimesService {
     
     return this.http.get<PrayerTimeResponse>(url).pipe(
       timeout(10000),
-      catchError(this.errorHandler.handleError<PrayerTimeResponse>('getPrayerTimes'))
+      catchError(("" as any)/**this.errorHandler.handleError<PrayerTimeResponse>('getPrayerTimes')*/)
     );
   }
 
