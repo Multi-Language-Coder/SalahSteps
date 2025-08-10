@@ -4,6 +4,7 @@ import { takeUntil, finalize } from 'rxjs/operators';
 import { PrayerTimesService } from '../services/prayer-times.service';
 import { LoadingService } from '.././loading.service';
 import { PrayerCalculationService } from '../services/prayer-calculation.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import { PrayerCalculationService } from '../services/prayer-calculation.service
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
-  
+  widgetScript: SafeHtml | undefined;
   prayers: subPrayerData[] = [
     { name: "Fajr", time: "Loading..." },
     { name: "Sunrise", time: "Loading..." },
@@ -30,12 +31,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private prayerTimesService: PrayerTimesService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private sanitizer: DomSanitizer
   ) {
     this.isLoading$ = this.loadingService.loading$;
   }
 
   ngOnInit(): void {
+    const scriptCode = '<script type="text/javascript" src="http://www.muslimpro.com/muslimprowidget.js?cityid=4366476" async></script>';
+    this.widgetScript = this.sanitizer.bypassSecurityTrustHtml(scriptCode);
     this.getCurrentLocation();
     this.startTimeUpdater();
   }
