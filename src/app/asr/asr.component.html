@@ -26,9 +26,9 @@ audio {
     </head>
     <body>
         <app-navbar></app-navbar>
-        <h1 class="text-center display-1" style="font-weight:bold;color:rgb(175, 175, 175)">Asr Prayer</h1>
+        <h1 class="text-center display-1" style="font-weight:bold;color:black">Asr Prayer</h1>
         <hr id="breaker">
-        <h4 class="text-center" style="color:rgb(175, 175, 175)">Asr is a prayer that has 2 sets, and within those 2 sets, are 4 Units of Sunnah Ghayr Mu'akkadah, and 4 units of Fard</h4>
+        <h4 class="text-center" style="color:black !important;">Asr is a prayer that has 2 sets, and within those 2 sets, are 4 Units of Sunnah Ghayr Mu'akkadah, and 4 units of Fard</h4>
         
         <div *ngFor="let set of setsAmount">
             <div class="text-center" style="margin: 20px 0;">
@@ -49,10 +49,10 @@ audio {
                 <div *ngFor="let step of stepsOfSalah" class="step text-center">
                    <div *ngIf="step.step <= set.units">
                      <h3 class="text-center">Step Number #{{step.step}}</h3>
-                    <p class="text-center">{{step.action}}</p>
+                    <p class="text-center" style="color:black !important;">{{step.action}}</p>
                     <div *ngIf="step.recitation" id="recitations">
                         <p *ngFor="let recitation of step.recitation">
-                             <span style="font-weight:bold;" class="text-center">{{recitation}}</span>
+                             <span style="font-weight:bold;" class="text-center" style="color:black !important;">{{recitation}}</span>
                         </p>
                          <div *ngIf="step.audioFile!=undefined" class="audio-container">
                                     <ng-container *ngFor="let audio of step.audioFile;">

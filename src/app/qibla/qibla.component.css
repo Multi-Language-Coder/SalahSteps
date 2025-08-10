@@ -1,13 +1,3 @@
-body {
-    background: linear-gradient(135deg, #659DBD 25%, #DAAD86 50%, #BC986A 75%, #FBEEC1 100%) !important;
-    font-family: 'Poppins', sans-serif;
-    color: #FFFFFF;
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
 
 h1, h4 {
     /* Using Amiri, a classic Arabic-style serif font for headings */

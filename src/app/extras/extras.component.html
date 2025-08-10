@@ -12,17 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@300&display=swap"
     rel="stylesheet">
   <style>
-    body {
-      background: linear-gradient(135deg, #659DBD 25%, #DAAD86 50%, #BC986A 75%, #FBEEC1 100%) !important;
-      font-family: 'Poppins', sans-serif;
-      color: #FFFFFF;
-      min-height: 100vh;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    }
-
     h1,
     h3 {
       /* Using Amiri, a classic Arabic-style serif font for headings */
@@ -98,10 +87,10 @@
             that Invalidate Salah</h3>
         </button>
       </div>
-      <div class="collapse" id="invalidationCollapse">
-        <div class="card-body">
+      <div class="collapse" id="invalidationCollapse" >
+        <div class="card-body" >
           <ul class="list-unstyled">
-            <li *ngFor="let action of invalidation; let i = index">
+            <li *ngFor="let action of invalidation; let i = index" style="color:black !important;">
               {{action}}
             </li>
           </ul>
@@ -119,7 +108,7 @@
       </div>
       <div class="collapse" id="sajdahSawhCollapse">
         <div class="card-body">
-          <p class="text-center" id="SajdahAlSahw">
+          <p class="text-center" id="SajdahAlSahw" style="color:black !important;">
             When one forgetfully misses a wajib act, they continue salah as usual. At the final sitting, they will
             recite the Tashahhud, and say salam looking over to the right shoulder immediately after Tashahhud and
             Shahadah, then go back into sajdah. They will perform 2 sajdahs and sit back up in the position of qa'dah.
@@ -140,7 +129,7 @@
       </div>
       <div class="collapse" id="missedPrayersCollapse">
         <div class="card-body">
-          <p class="text-center" id="missedPrayers">
+          <p class="text-center" id="missedPrayers" style="color:black !important;">
             Although it is haram to purposefully miss the salah in its specified time, if someone misses the time of
             prayer then he must make up the prayer. This is known as performing qada' salah. In performing qada' salah,
             it is only required to perform the Fard and Wajib Sets of the prayer.
@@ -163,7 +152,7 @@
       <div class="collapse" id="womenProcedureCollapse">
         <div class="card-body">
           <ul class="list-unstyled">
-            <li *ngFor="let change of womenProcedure; let i = index">
+            <li *ngFor="let change of womenProcedure; let i = index" style="color:black !important;">
               {{change}}
             </li>
           </ul>
@@ -180,13 +169,13 @@
         </button>
       </div>
       <div class="collapse" id="janazahCollapse">
-        <div class="card-body">
+        <div class="card-body" >
           <p class="text-center janazahParagraph">
             When a Muslim leaves this world, then it is mandatory upon the Muslim community of the deceased to properly
             prepare his or her Janazah. This includes the ghusl (bathing) of the deceased, performing the funeral prayer
             for the deceased and burying them properly.
           </p>
-          <p class="text-center janazahParagraph">
+          <p class="text-center janazahParagraph" >
             The Salah al-Janazah is performed by men only and must be performed outside of the Masjid. The deceased
             should be laid in front of the Imam and the rest of the people performing the prayer will be lined up in
             rows behind the Imam, similar to how they are in normal congregation. Then, everyone must make the intention
@@ -195,8 +184,8 @@
             time, everyone should quietly recite the thana with just one small addition.
           </p>
           <div id="recitations">
-            <p class="text-center">{{janazah.Thana}}</p>
-            <div class="audio-container">
+            <p class="text-center" style="color:black !important;">{{janazah.Thana}}</p>
+            <div class="audio-container" >
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer3)">
               <ng-container *ngIf="audioPlayer3.paused==true">
                 <div class="play-button"></div>
@@ -220,7 +209,7 @@
           If the deceased person is an adult, then everyone should quietly recite:
         </p>
         <div id="recitations">
-          <p class="text-center">{{janazah.AdultVer}}</p>
+          <p class="text-center" style="color:black !important;">{{janazah.AdultVer}}</p>
           <div class="audio-container">
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer)">
               <ng-container *ngIf="audioPlayer.paused==true">
@@ -239,7 +228,7 @@
           If the deceased person is a male child, then they will recite
         </p>
         <div id="recitations">
-          <p class="text-center">{{janazah.BoyChild}}</p>
+          <p class="text-center" style="color:black !important;">{{janazah.BoyChild}}</p>
           <div class="audio-container">
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer1)">
               <ng-container *ngIf="audioPlayer1.paused==true">
@@ -258,7 +247,7 @@
           If the deceased person is a female child, then they will recite
         </p>
         <div id="recitations">
-          <p class="text-center">{{janazah.GirlChild}}</p>
+          <p class="text-center" style="color:black !important;">{{janazah.GirlChild}}</p>
           <div class="audio-container">
               <button class="audio-icon-btn" (click)="togglePlayPause(audioPlayer2)">
               <ng-container *ngIf="audioPlayer2.paused==true">

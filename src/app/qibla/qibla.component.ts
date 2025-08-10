@@ -10,6 +10,8 @@ export class QiblaComponent implements OnInit {
   QiblaDirection: number = 0;
   currentHeading: number = 0;
   isOrientationSupported: boolean = false;
+ 
+  constructor() {}
 
   ngOnInit() {
     this.checkOrientationSupport();

@@ -14,6 +14,8 @@ export class ExtrasComponent implements OnInit, OnDestroy {
   invalidation = enviroment.invalidation;
   womenProcedure = enviroment.womenProcedure;
   private themeSubscription!: Subscription;
+  private previousThemeName?: string;
+  private themeOverridden = false;
 
   janazah = enviroment.SalahAlJanazah;
 
@@ -23,11 +25,16 @@ export class ExtrasComponent implements OnInit, OnDestroy {
     this.themeSubscription = this.themeService.currentTheme$.subscribe(
       (theme: any) => this.currentTheme = theme
     );
+
+    // Respect the user's selected theme; do not override to Teal
   }
 
   ngOnDestroy(): void {
     if (this.themeSubscription) {
       this.themeSubscription.unsubscribe();
+    }
+    if (this.themeOverridden && this.previousThemeName) {
+      this.themeService.setTheme(this.previousThemeName);
     }
   }
 
